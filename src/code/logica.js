@@ -1,127 +1,118 @@
-import { validarNoNullUndefined, generarIdUnico } from "./utilidades.js";
+import { validarNoNullUndefined, generarIdUnico } from './utilidades.js'
 
 export class Libro {
-  constructor(titulo, autor, estado) {
-    // Atributos Privados
-    let _titulo;
-    let _autor;
-    let _estado; // true -> Disponible, false -> Prestado
+  //---------------- Atributos privados ---------------//
+  #id
+  #titulo
+  #autor
+  #anno_publicacion
 
-    // Getters
-    this.getTitulo = () => _titulo;
-    this.getAutor = () => _autor;
-    this.getEstado = () => _estado;
-
-    // Setters
-    (this.setTitulo = (titulo) => {
-      if (!validarNoNullUndefined(titulo) || typeof titulo !== "string")
-        throw new Error("Título no válido");
-      _titulo = titulo;
-    })(titulo);
-
-    (this.setAutor = (autor) => {
-      if (!validarNoNullUndefined(autor) || typeof autor !== "string")
-        throw new Error("Autor no válido");
-      _autor = autor;
-    })(autor);
-
-    (this.setEstado = (estado) => {
-      if (!validarNoNullUndefined(estado) || typeof estado !== "boolean")
-        throw new Error("Estado no válido");
-      _estado = estado;
-    })(estado);
+  //---------------- Getters -----------//
+  getId() {
+    return this.#id
+  }
+  getTitulo() {
+    return this.#titulo
+  }
+  getAutor() {
+    return this.#autor
+  }
+  getAnnoPublicacion() {
+    return this.#anno_publicacion
   }
 
-  toString() {
-    return `Libro con título: ${this.getTitulo()}, autor: ${this.getAutor()} y estado: ${
-      this.getEstado() ? "Disponible" : "Prestado"
-    }`;
+  //----------------- Setters ---------------//
+  setTitulo(titulo) {
+    if (!validarNoNullUndefined(titulo) || typeof titulo !== 'string')
+      throw new Error('Título no válido')
+    this.#titulo = titulo
   }
+  setAutor(autor) {
+    if (!validarNoNullUndefined(autor) || typeof autor !== 'string')
+      throw new Error('Autor no válido')
+    this.#autor = autor
+  }
+  setAnnoPublicacion(anno_publicacion) {
+    if (!validarNoNullUndefined(anno_publicacion) || typeof anno_publicacion !== 'number')
+      throw new Error('Año de publicación no válido')
+    this.#anno_publicacion = anno_publicacion
+  }
+
+  //------------- Constructor ------------//
+  constructor(titulo, autor, anno_publicacion) {
+    this.#id = generarIdUnico()
+    this.setTitulo(titulo)
+    this.setAutor(autor)
+    this.setAnnoPublicacion(anno_publicacion)
+  }
+
+  // ----------------- Otros ---------------//
   imprimir() {
-    console.log(this.toString());
+    console.log(
+      `Libro con id: ${this.getId()}, título: ${this.getTitulo()}, autor: ${this.getAutor()} y año de publicación: ${this.getAnnoPublicacion()}`
+    )
   }
 }
 
-export class Libreria {
-  constructor() {
-    const libros = new Map();
+export class Biblioteca {
+  //---------------- Atributos privados ---------------//
+  #listado_libros = []
 
-    // Getters
-    this.getLibros = () => libros;
+  //--------------- Getters ---------------//
+  getListadoLibros() {
+    return this.#listado_libros
   }
 
+  //----------------- Agregar, Editar, Eliminar --------------//
   agregarLibro(libro) {
-    if (!validarNoNullUndefined(libro) || !(libro instanceof Libro))
-      throw new Error("Libro no válido");
-    if (this.getLibros().has(libro)) {
-      throw new Error("Libro ya existente");
-    }
-    this.getLibros().set(generarIdUnico(), libro);
-  }
-
-  getLibro(id) {
-    return this.getLibros().get(id);
-  }
-
-  getListadoLibrosSinId() {
-    return Array.from(this.getLibros().values());
-  }
-
-  getListadoLibrosConId() {
-    return Array.from(this.getLibros().entries());
-  }
-
-  static imprimirListadoLibrosSinId(listado_libros) {
     if (
-      !validarNoNullUndefined(listado_libros) ||
-      !(listado_libros instanceof Array)
+      !validarNoNullUndefined(libro) ||
+      !(libro instanceof Libro) ||
+      this.getListadoLibros().includes(libro)
     )
-      throw new Error("Listado no válido");
-    for (let libro of listado_libros) libro.imprimir();
+      throw new Error('Libro no válido')
+    this.getListadoLibros().push(libro)
+  }
+  eliminarLibro(id_libro) {
+    this.getListadoLibros().splice(this.buscarLibro(id_libro), 1)
+  }
+  editarLibro(id_libro, titulo, autor, anno_publicacion) {
+    let libro = this.getListadoLibros()[this.buscarLibro(id_libro)]
+    if (validarNoNullUndefined(titulo)) libro.setTitulo(titulo)
+    if (validarNoNullUndefined(autor)) libro.setAutor(autor)
+    if (validarNoNullUndefined(anno_publicacion)) libro.setAnnoPublicacion(anno_publicacion)
   }
 
-  imprimirListadoLibros() {
-    for (let libro of this.getListadoLibrosConId()) {
-      console.log(`Id: ${libro[0]} -> ${libro[1].toString()}`);
-    }
-  }
-
+  //--------------- Buscadores ---------------//
   buscarLibrosAutor(autor) {
-    if (!validarNoNullUndefined(autor) || typeof autor !== "string")
-      throw new Error("Autor no válido");
-    return this.getListadoLibrosSinId().filter(
-      (libro) => libro.getAutor() === autor
-    );
-  }
-  buscarLibrosTitulo(titulo) {
-    if (!validarNoNullUndefined(titulo) || typeof titulo !== "string")
-      throw new Error("Titulo no válido");
-    return this.getListadoLibrosSinId().filter(
-      (libro) => libro.getTitulo() === titulo
-    );
-  }
+    if (!validarNoNullUndefined(autor) || typeof autor !== 'string')
+      throw new Error('Autor no válido')
 
-  /**
-   * Permite gestionar el proceso de prestar/devolver libros de la librería
-   *
-   * @param {string} id Id del libro a ejecutar la operación
-   * @param {boolean} operacion Operación: true -> prestar libro, false-> devolver libro
-   * @returns Libro gestionado
-   */
-  gestionarPrestamoLibro(id, operacion) {
-    if (!this.getLibros().has(id)) throw new Error("Libro no existente");
-    let l = this.getLibros().get(id);
-    if (l.getEstado() !== operacion) {
-      throw new Error(
-        `No es posible ${
-          operacion ? "prestar" : "devolver"
-        } el libro pues se encuentra actualmente ${
-          operacion ? "prestado" : "disponible"
-        }`
-      );
+    return this.getListadoLibros().filter((libro) => libro.getAutor() === autor)
+  }
+  buscarLibro(id_libro) {
+    if (!validarNoNullUndefined(id_libro) || typeof id_libro !== 'string' || id_libro.length != 9)
+      throw new Error('Identificador no válido')
+    let indice = -1
+
+    for (let i = 0; i < this.getListadoLibros().length && indice == -1; i++) {
+      if (this.getListadoLibros()[i].getId() === id_libro) {
+        indice = i
+      }
     }
-    l.setEstado(!l.getEstado());
 
-    return l;
+    if (indice == -1) throw new Error('No existe un libro con el identificador: ' + id_libro)
+
+    return indice
+  }
+
+  //----------------- Otros --------------//
+  imprimirListadoLibros() {
+    console.log('Listado de libros:')
+    for (let libro of this.getListadoLibros()) libro.imprimir()
+  }
+  static imprimirListadoLibros(libros) {
+    console.log('Listado de libros:')
+    for (let libro of libros) libro.imprimir()
   }
 }
