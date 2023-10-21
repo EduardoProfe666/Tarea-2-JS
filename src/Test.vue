@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { nuevoLibro, solicitarLibros } from './code/controller.js';
-//import './code/pruebas.js';
 
 const titulo = ref('');
 const autor = ref('');
@@ -16,7 +15,7 @@ const libros = computed(()=>data.value);
     <form action="" @submit.prevent="()=>nuevoLibro(titulo, autor, anno)">
         <input type="text" placeholder="titulo" v-model="titulo">
         <input type="text" placeholder="autor" v-model="autor">
-        <input type="number" min="1900" v-model="anno">
+        <input type="number" v-model="anno">
         <button>nuevo libro</button>
     </form>
     <div>

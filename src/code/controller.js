@@ -1,11 +1,14 @@
-import { ref } from "vue";
+import { ref, toValue, watchEffect, watch, computed } from "vue";
 import biblioteca from "./biblioteca";
 import { Libro } from "./libro";
 
-export const nuevoLibro = (titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail) => {
+const libro = ref(null);
+
+export const nuevoLibro = (titulo, autor, anno_publicacion, publicador = "publicador",
+    contenido = "contenido", cover = "cover", thumbnail = "thumbnail") => {
     try {
-        const libro = new Libro(titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail);
-        biblioteca.agregarLibro(libro);
+        libro.value = new Libro(titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail);
+        biblioteca.agregarLibro(libro.value);
         biblioteca.imprimirListadoLibros();
     } catch (err) {
         console.log(err);
@@ -15,11 +18,15 @@ export const nuevoLibro = (titulo, autor, anno_publicacion, publicador, contenid
 export const solicitarLibros = () => {
     const data = ref(null);
 
-    try {
-        data.value = biblioteca.getListadoLibros();
-    } catch (err) {
-        console.log(err);
-    }
+    watchEffect(()=>{
+        try {
+            libro.value;
+            data.value=null;    
+            data.value = biblioteca.getListadoLibros();
+        } catch (err) {
+            console.log(err);
+        }
+    })
 
     return data;
 }
