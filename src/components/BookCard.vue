@@ -1,6 +1,6 @@
 <template>
     <div id="bookcard">
-        <img id="cover" src ="@/assets/images/placeholder.png" >
+        <img id="cover" :src ="props.image" >
         <label id="title" >{{ props.title }}</label>
         <label id="author">by {{ props.author }}</label>
         <p style="font-size: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat pariatur delectus laboriosam nam, corrupti nisi similique beatae libero expedita, modi ut assumenda alias quae quis vel. Sit ut quis ullam.</p>
@@ -17,7 +17,7 @@ const props = defineProps({
     },
     image:{
         type:String,
-        default:'@/assets/images/placeholder.png',
+        default:'./src/assets/images/placeholder.png',
         required:true
     },
     author:{
