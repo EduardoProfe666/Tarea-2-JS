@@ -1,7 +1,8 @@
-import { Biblioteca, Libro } from './logica.js'
+import  biblioteca  from './biblioteca.js'
+import { Libro } from './libro.js'
 
 //---------------- Declaración de variables -------------------//
-let biblioteca = new Biblioteca()
+//let biblioteca = new Biblioteca()
 let l1 = new Libro('Lib 1', 'Juan', 2002)
 let l2 = new Libro('Lib 2', 'Juan', 2003)
 let l3 = new Libro('Lib 3', 'Pedro', 2004)
@@ -16,7 +17,7 @@ biblioteca.agregarLibro(l3)
 biblioteca.agregarLibro(l4)
 biblioteca.agregarLibro(l5)
 biblioteca.imprimirListadoLibros()
-
+/*
 console.log('\nPrueba de correcta edición de título')
 console.log('Antes:')
 biblioteca.getListadoLibros()[3].imprimir()
@@ -47,8 +48,8 @@ biblioteca.imprimirListadoLibros()
 
 console.log('\nPrueba de correcta búsqueda de libros por autor')
 console.log('Libros del autor Juan:')
-Biblioteca.imprimirListadoLibros(biblioteca.buscarLibrosAutor('Juan'))
+biblioteca.imprimirListadoLibros(biblioteca.buscarLibrosAutor('Juan'))
 console.log('Libros del autor Lilian:')
-Biblioteca.imprimirListadoLibros(biblioteca.buscarLibrosAutor('Lilian'))
-
+biblioteca.imprimirListadoLibros(biblioteca.buscarLibrosAutor('Lilian'))
+*/
 console.log('\n')
