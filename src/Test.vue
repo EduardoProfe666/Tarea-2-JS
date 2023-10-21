@@ -1,17 +1,13 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { nuevoLibro, solicitarLibros } from './code/controller.js';
-import './code/pruebas.js';
+//import './code/pruebas.js';
 
 const titulo = ref('');
 const autor = ref('');
 const anno = ref(1900);
 
-let data = ref([]);
-
-onMounted(()=>{
-    data.value = solicitarLibros();
-})
+const data = solicitarLibros();
 
 const libros = computed(()=>data.value);
 </script>
@@ -25,7 +21,7 @@ const libros = computed(()=>data.value);
     </form>
     <div>
         <p v-for="libro in libros" :key="libro.id">
-            {{ libro }}
+            {{ libro.getTitulo() }}
         </p>
     </div>
 </template>

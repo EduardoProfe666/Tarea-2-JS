@@ -5,7 +5,7 @@ import { validarNoNullUndefined } from './utilidades.js'
  * Permite modelar una biblioteca con su listado de libros y las funcionalidades
  * de agregar, editar y eliminar libros, además de buscar libros por autor
  */
-export class Biblioteca {
+class Biblioteca {
   constructor() {
     const _listado_libros = []
 
@@ -117,3 +117,7 @@ export class Biblioteca {
     for (let libro of libros) libro.imprimir()
   }
 }
+
+const biblioteca = new Biblioteca();
+
+export default biblioteca;
