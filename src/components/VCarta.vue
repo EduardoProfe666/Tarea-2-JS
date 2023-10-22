@@ -35,9 +35,8 @@ const props = defineProps({
         type:String,
         default:'Sinopsis...'
     },
-    
-    
 })
+
 
     
 </script>
@@ -56,10 +55,13 @@ const props = defineProps({
         border-style:solid;
         margin-left: 35%;
         margin-right: 5%;
+        margin-top: 60px;
         margin-bottom: 10%;
-        height: 75%;
+        height: 80%;
         width: 50%;
         overflow: scroll;
+        text-align: center;
+        transition: all ease 250ms;
         background: rgba(255, 255, 255, 0.29);
         backdrop-filter: blur(12.1px);
         -webkit-backdrop-filter: blur(12.1px);
@@ -69,6 +71,10 @@ const props = defineProps({
         border-radius: 15px;
         border-style:solid;
         width: 50%;
+        max-width: 300px;
+        pointer-events: none;
+        user-select: none;
+        box-shadow: 0px 0px 8px  white;
     }
     #titulo{
         padding-top: 20px;

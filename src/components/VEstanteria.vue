@@ -16,6 +16,7 @@ const emit = defineEmits(['enviar_libro'])
 
 const libros = computed(()=>data.value);
 
+
 const mostrar_en_carta = (id)=>{
     const libro = buscarLibroporID(id);
     emit('enviar_libro', libros.value[libro]);
@@ -35,11 +36,12 @@ const mostrar_en_carta = (id)=>{
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        margin-left:10px;
-        margin-bottom: 10px;
-        height: 75%;
+        margin-left:2%;
+        margin-top: 60px;
+        margin-bottom: 10%;
+        height: 80%;
         width: 20%;
-        overflow: scroll;
+        overflow: auto;
         box-shadow: 0px 0px 8px  white;
     }
 </style>
