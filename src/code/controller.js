@@ -1,4 +1,4 @@
-import { ref, watchEffect } from "vue";
+import { ref, watch } from "vue";
 import biblioteca from "./biblioteca";
 import { Libro } from "./libro";
 
@@ -18,15 +18,14 @@ export const nuevoLibro = async (titulo, autor, anno_publicacion, publicador = "
 export const solicitarLibros = () => {
     const data = ref(null);
 
-    watchEffect(async ()=>{
+    watch(flag, async ()=>{
         try {
-            flag.value;
             data.value=null;    
             data.value = biblioteca.getListadoLibros();
         } catch (err) {
             console.log(err);
         }
-    })
+    }, {immediate:true});
 
     return data;
 }
