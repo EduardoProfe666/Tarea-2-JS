@@ -24,40 +24,51 @@ const action= (id)=>emit('enviar_id', id)
 </script>
 <style scoped>
     #libro{
-        width: 80%;
-        margin-bottom: 10%;
-        max-width: 150px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        width: 145px;
         background-color: white;
         transition: all ease 250ms;
         border-radius: 10px;
         text-align: center;
-        padding: 5px;
+        height: 500px;
         box-shadow: 0px 0px 8px  black;
     }
     #libro:hover{
-        transform: scale(1.2);
-        margin-top: 15%;
+        transform: scale(1.1);
         cursor: pointer;
-        margin-bottom: 25%;
     }
     #libro:active{
-        transform: scale(1.3);
-        margin-top: 15%;
-        opacity: 0.5;
-        margin-bottom: 25%;
+        transform: scale(1.2);
+        opacity: 0.5; 
     }
     #titulo{
-       
+        
         font-size: 18px;
         user-select: none;
         color: black;
+        padding: 10px;
+        word-wrap: break-word;
     }
     img{
-        height: 75%;
+        height: 150px;
         width: 100%;
         border-radius: 5px;
         pointer-events: none;
         user-select: none;
+    }
+    @media only screen and (max-width:700px){
+        #titulo{
+            font-size: 12px;
+        }
+        img{
+            height: 90px;  
+        }
+        #libro{
+            margin-bottom: 20px;
+            width: 100px;
+        }
     }
 
 
