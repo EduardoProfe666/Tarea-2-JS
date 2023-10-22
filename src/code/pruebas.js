@@ -1,10 +1,10 @@
 import { Libro } from './libro.js'
-import { Biblioteca } from './biblioteca.js'
+import biblioteca from './biblioteca.js'
 
 // Permite probar por consola las funcionalidades de la lógica
 
 //---------------- Declaración de variables -------------------//
-let biblioteca = new Biblioteca()
+//let biblioteca = new Biblioteca()
 let l1 = new Libro('Lib 1', 'Juan', 2002, 'A', 'ABC', 'ruta A', 'ruta Q')
 let l2 = new Libro('Lib 2', 'Juan', 2003, 'B', 'ABC', 'ruta B', 'ruta W')
 let l3 = new Libro('Lib 3', 'Pedro', 2004, 'C', 'ABC', 'ruta C', 'ruta E')
@@ -28,7 +28,7 @@ biblioteca.agregarLibro(l8)
 biblioteca.agregarLibro(l9)
 
 biblioteca.imprimirListadoLibros()
-
+/*
 console.log('\nPrueba de correcta edición de título')
 console.log('Antes:')
 biblioteca.getListadoLibros()[3].imprimir()
@@ -96,5 +96,6 @@ console.log('Prueba 4:')
 Biblioteca.imprimirListadoLibros(biblioteca.buscarLibros(null, 'Lil'))
 console.log('Prueba 5:')
 Biblioteca.imprimirListadoLibros(biblioteca.buscarLibros(null, null, null, 'B'))
-
+*/
 console.log('\n')
+
