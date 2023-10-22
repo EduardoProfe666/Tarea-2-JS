@@ -1,4 +1,4 @@
-import { validarNoNullUndefined, generarIdUnico } from './utilidades.js'
+import { validarNoNullUndefined, generarIdUnico, dormirEjecucion } from './utilidades.js'
 
 /**
  * Permite modelar un libro con: título, autor, año de publicación,
@@ -72,6 +72,7 @@ export class Libro {
     this.setContenido(contenido)
     this.setCover(cover)
     this.setThumbnail(thumbnail)
+    dormirEjecucion(2)
   }
 
   // ----------------- Otros ---------------//
