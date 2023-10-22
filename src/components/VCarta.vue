@@ -1,29 +1,41 @@
 <template>
-    <div id="bookcard">
-        <img id="cover" :src ="props.image" >
-        <label id="title" >{{ props.title }}</label>
-        <label id="author">by {{ props.author }}</label>
-        <p style="font-size: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat pariatur delectus laboriosam nam, corrupti nisi similique beatae libero expedita, modi ut assumenda alias quae quis vel. Sit ut quis ullam.</p>
-        <p style="font-size: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat pariatur delectus laboriosam nam, corrupti nisi similique beatae libero expedita, modi ut assumenda alias quae quis vel. Sit ut quis ullam.</p>
-    
+    <div id="carta">
+        <img id="caratula" :src ="props.imagen" >
+        <label id="titulo" >{{ props.titulo }}</label>
+        <label class="subtitulo">por {{ props.autor }}</label>
+        <label class="subtitulo">publicado por {{props.publicador}} en {{ props.anno }}</label>
+        <p id="contenido">{{ props.contenido }}</p>
     </div>
 </template>
 <script setup>
 const props = defineProps({
 
-    title:{
+    titulo:{
         type:String,
-        default:'Title'
+        default:'Titulo'
     },
-    image:{
+    imagen:{
         type:String,
         default:'./src/assets/images/placeholder.png',
         required:true
     },
-    author:{
+    autor:{
         type:String,
-        default:'Author'
-    }
+        default:'Autor'
+    },
+    anno:{
+        type:String,
+        default:'2000'
+    },
+    publicador:{
+        type:String,
+        default:'Publicador'
+    },
+    contenido:{
+        type:String,
+        default:'Sinopsis...'
+    },
+    
     
 })
 
@@ -32,8 +44,8 @@ const props = defineProps({
 
 
 <style scoped>
-    #bookcard{
-        box-shadow: 0px 0px 15px  white;
+    #carta{
+        box-shadow: 0px 0px 8px  white;
         padding: 20px;
         display: flex;
         position:absolute;
@@ -45,21 +57,28 @@ const props = defineProps({
         margin-left: 35%;
         margin-right: 5%;
         margin-bottom: 10%;
-        height: 80%;
+        height: 75%;
         width: 50%;
         overflow: scroll;
         background: rgba(255, 255, 255, 0.29);
         backdrop-filter: blur(12.1px);
         -webkit-backdrop-filter: blur(12.1px);
     }
-    #cover{
+    #caratula{
         border-color: white;
         border-radius: 15px;
         border-style:solid;
         width: 50%;
     }
-    #title{
-        padding: 20px;
+    #titulo{
+        padding-top: 20px;
         font-size: 30px;
+    }
+    .subtitulo{
+        font-size: 20px;
+        padding: 3px;
+    }
+    #contenido{
+        font-size: 20px;
     }
 </style>
