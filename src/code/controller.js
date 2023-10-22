@@ -18,7 +18,7 @@ export async function nuevoLibro (titulo, autor, anno_publicacion, publicador = 
 export const solicitarLibros = () => {
     const data = ref(null);
 
-    watchEffect(()=>{
+    watchEffect(async ()=>{
         try {
             flag.value;
             data.value=null;    
