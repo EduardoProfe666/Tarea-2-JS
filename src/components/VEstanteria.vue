@@ -1,21 +1,28 @@
 <template>
-        <div class="bookshelf">
-            <VisualBook v-for="libro in libros" :key="libro.getId()" :title="libro.getTitulo()" :author="libro.getAutor()"/>
+        <div id="estanteria">
+            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" v-on:enviar_id="mostrar_en_carta" />
         </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import { solicitarLibros } from '../code/controller';
-import VisualBook from './VisualBook.vue';
+import VLibro from './VLibro.vue';
 
 const data = solicitarLibros();
 
+
+const emit = defineEmits(['enviar_libro'])
+
 const libros = computed(()=>data.value);
+
+const mostrar_en_carta = (id)=>{
+    emit('enviar_libro', libros.value[0])
+}
 </script>
 
 <style scoped>
-    .bookshelf{
+    #estanteria{
         background: rgba(255, 255, 255, 0.29);
         backdrop-filter: blur(12.1px);
         -webkit-backdrop-filter: blur(12.1px);
@@ -29,9 +36,9 @@ const libros = computed(()=>data.value);
         border-style:solid;
         margin-left:10px;
         margin-bottom: 10px;
-        height: 80%;
+        height: 75%;
         width: 20%;
         overflow: scroll;
-        box-shadow: 0px 0px 15px  white;
+        box-shadow: 0px 0px 8px  white;
     }
 </style>
