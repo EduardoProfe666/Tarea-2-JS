@@ -1,5 +1,5 @@
 <template>
-    <div @click="action(props.titulo)" id="libro">
+    <div @click="action(props.codigo)" id="libro">
         <img src ="@/assets/images/placeholder.png">
         <label id="titulo">{{ props.titulo }}</label>
     </div>

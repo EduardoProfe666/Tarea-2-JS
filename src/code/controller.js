@@ -4,8 +4,8 @@ import { Libro } from "./libro";
 
 const flag = ref(true);
 
-export async function nuevoLibro (titulo, autor, anno_publicacion, publicador = "publicador",
-    contenido = "contenido", cover = "cover", thumbnail = "thumbnail") {
+export const nuevoLibro = async (titulo, autor, anno_publicacion, publicador = "publicador",
+    contenido = "contenido", cover = "cover", thumbnail = "thumbnail") => {
     try {
         const libro = new Libro(titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail);
         biblioteca.agregarLibro(libro);
@@ -30,3 +30,5 @@ export const solicitarLibros = () => {
 
     return data;
 }
+
+export const buscarLibroporID = (id)=>biblioteca.buscarLibro(id);

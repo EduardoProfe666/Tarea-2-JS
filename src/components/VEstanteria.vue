@@ -1,12 +1,12 @@
 <template>
         <div id="estanteria">
-            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" v-on:enviar_id="mostrar_en_carta" />
+            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" v-on:enviar_id="(id)=>mostrar_en_carta(id)" />
         </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { solicitarLibros } from '../code/controller';
+import { solicitarLibros, buscarLibroporID } from '../code/controller';
 import VLibro from './VLibro.vue';
 
 const data = solicitarLibros();
@@ -17,7 +17,8 @@ const emit = defineEmits(['enviar_libro'])
 const libros = computed(()=>data.value);
 
 const mostrar_en_carta = (id)=>{
-    emit('enviar_libro', libros.value[0])
+    const libro = buscarLibroporID(id);
+    emit('enviar_libro', libros.value[libro]);
 }
 </script>
 
