@@ -24,8 +24,8 @@ const props = defineProps({
         default:'Autor'
     },
     anno:{
-        type:String,
-        default:'2000'
+        type:Number,
+        default:2000
     },
     publicador:{
         type:String,
