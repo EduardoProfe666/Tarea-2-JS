@@ -1,22 +1,26 @@
 <template>
-    <div id="barradenavegacion">
-  
-        <input placeholder="Buscar un libro..." id = "buscador">
-        <button id="boton_aniadir" >Añadir Libro</button>
-    </div>
+    <input placeholder="Buscar un libro..." id = "buscador">
+    <button @click="action()" id="boton_aniadir" >Añadir Libro<img src = "@/assets/images/icons/add_icon.png"></button>
 </template>
-<style scoped>
 
+<script setup>
+const emit = defineEmits(['aniadir_libro'])
+const action= ()=>emit('aniadir_libro')
+</script>
+
+<style scoped>
     #buscador{
+        margin-top: 15px;
         border-radius: 15px;
         position: absolute;
-        margin-left: 35%;
+        margin-left: 45%;
         margin-right: 5%;
         width:45%;
         border:0px;
         height: 45px;
         font-size: 20px;
         outline: none;
+        padding-left: 20px;
     }
     #buscador::placeholder{
         color:gray;
@@ -29,9 +33,11 @@
     #boton_aniadir{
         border-radius: 15px;
         position: absolute;
-        margin-left: 2%;
-        width: 25%;
-        
+        margin-top: 15px;
+        margin-left: 3%;
+        width: 150px;
+        display: flex;
+        align-items: center;
         color: white;
         box-shadow: 0px 0px 8px  white;
         border-color: white;
@@ -44,7 +50,6 @@
         height: 45px;
         font-weight: bold;
         font-size: 17px;
-        max-width:300px;
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -54,5 +59,10 @@
     #boton_aniadir:active{
         transform: scale(1.2);
         opacity: 0.5;
+    }
+    @media only screen and (max-width:700px){
+        #boton_aniadir{
+            width: 110px;
+        }
     }
 </style>

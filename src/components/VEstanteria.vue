@@ -1,6 +1,6 @@
 <template>
         <div id="estanteria">
-            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" v-on:enviar_id="(id)=>mostrar_en_carta(id)" />
+            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :thumbnail="libro.getThumbnail()" v-on:eliminar_libro="(id)=>enviar_libro_para_eliminar(id)" v-on:enviar_id="(id)=>enviar_libro_para_carta(id)" />
         </div>
 </template>
 
@@ -12,14 +12,18 @@ import VLibro from './VLibro.vue';
 const data = solicitarLibros();
 
 
-const emit = defineEmits(['enviar_libro'])
+const emit = defineEmits(['enviar_libro','eliminar_libro'])
 
 const libros = computed(()=>data.value);
 
-
-const mostrar_en_carta = (id)=>{
+const enviar_libro_para_carta = (id)=>{
     const libro = buscarLibroporID(id);
     emit('enviar_libro', libros.value[libro]);
+}
+
+const enviar_libro_para_eliminar = (id)=>{
+    const libro = buscarLibroporID(id);
+    emit('eliminar_libro', libros.value[libro]);
 }
 </script>
 
@@ -36,11 +40,11 @@ const mostrar_en_carta = (id)=>{
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        margin-left:2%;
-        margin-top: 60px;
+        margin-left:3%;
+        margin-top: 90px;
         margin-bottom: 10%;
         height: 80%;
-        width: 20%;
+        width: 30%;
         overflow: auto;
         box-shadow: 0px 0px 8px  white;
     }

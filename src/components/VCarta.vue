@@ -1,6 +1,6 @@
 <template>
     <div id="carta">
-        <img id="caratula" :src ="props.imagen" >
+        <img id="caratula" :src ="props.cover" >
         <label id="titulo" >{{ props.titulo }}</label>
         <label class="subtitulo">por {{ props.autor }}</label>
         <label class="subtitulo">publicado por {{props.publicador}} en {{ props.anno }}</label>
@@ -14,9 +14,9 @@ const props = defineProps({
         type:String,
         default:'Titulo'
     },
-    imagen:{
+    cover:{
         type:String,
-        default:'./src/assets/images/placeholder.png',
+        default:'./src/assets/images/covers/default.png',
         required:true
     },
     autor:{
@@ -24,8 +24,8 @@ const props = defineProps({
         default:'Autor'
     },
     anno:{
-        type:String,
-        default:'2000'
+        type:Number,
+        default:2000
     },
     publicador:{
         type:String,
@@ -36,11 +36,7 @@ const props = defineProps({
         default:'Sinopsis...'
     },
 })
-
-
-    
 </script>
-
 
 <style scoped>
     #carta{
@@ -53,9 +49,9 @@ const props = defineProps({
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        margin-left: 35%;
+        margin-left: 45%;
         margin-right: 5%;
-        margin-top: 60px;
+        margin-top: 90px;
         margin-bottom: 10%;
         height: 80%;
         width: 50%;
@@ -65,6 +61,9 @@ const props = defineProps({
         background: rgba(255, 255, 255, 0.29);
         backdrop-filter: blur(12.1px);
         -webkit-backdrop-filter: blur(12.1px);
+    }
+    #carta:hover{
+        scale:1.05;
     }
     #caratula{
         border-color: white;
