@@ -4,14 +4,18 @@ import VEstanteria from './components/VEstanteria.vue';
 import VCarta from './components/VCarta.vue';
 import { Libro } from './code/libro';
 import VBarraNavegacion from './components/VBarraNavegacion.vue'
+// import VEliminarLibro from './components/VEliminarLibro.vue';
 const libro = ref(new Libro('','Autor',2000,'Publicador','Sinopsis...','',''))
 
 </script>
 
 <template>
+    
     <VBarraNavegacion></VBarraNavegacion>
+    <!-- <VEliminarLibro></VEliminarLibro> -->
     
     <div id="main">
+        
             <VEstanteria v-on:enviar_libro="(value)=>libro = value"></VEstanteria>
             <VCarta v-if="libro.getThumbnail()!==''" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :anno="libro.getAnnoPublicacion()" :publicador="libro.getPublicador()" :contenido="libro.getContenido()" :cover="libro.getCover()"></VCarta>
             <h2 v-else id ="titulo">Selecciona un libro</h2>
