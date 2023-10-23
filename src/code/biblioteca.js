@@ -5,7 +5,7 @@ import { validarNoNullUndefined } from './utilidades.js'
  * Permite modelar una biblioteca con su listado de libros y las funcionalidades
  * de agregar, editar y eliminar libros, además de buscar libros por autor
  */
-export class Biblioteca {
+class Biblioteca {
   constructor() {
     const _listado_libros = []
 
@@ -69,11 +69,24 @@ export class Biblioteca {
    * @param {string} autor Autor de los libros
    * @returns Listado de libros filtrado
    */
-  buscarLibrosAutor(autor) {
-    if (!validarNoNullUndefined(autor) || typeof autor !== 'string')
-      throw new Error('Autor no válido')
+  buscarLibros(titulo, autor, annoPublicacion, publicador) {
+    let libros = this.getListadoLibros()
+    if (validarNoNullUndefined(titulo)) {
+      libros = libros.filter((libro) => libro.getTitulo().includes(titulo))
+    }
+    if (validarNoNullUndefined(autor)) {
+      libros = libros.filter((libro) => libro.getAutor().includes(autor))
+    }
+    if (validarNoNullUndefined(annoPublicacion)) {
+      libros = libros.filter((libro) =>
+        libro.getAnnoPublicacion().toString().includes(annoPublicacion.toString())
+      )
+    }
+    if (validarNoNullUndefined(publicador)) {
+      libros = libros.filter((libro) => libro.getPublicador().includes(publicador))
+    }
 
-    return this.getListadoLibros().filter((libro) => libro.getAutor() === autor)
+    return libros
   }
 
   /**
@@ -117,3 +130,7 @@ export class Biblioteca {
     for (let libro of libros) libro.imprimir()
   }
 }
+
+const biblioteca = new Biblioteca();
+
+export default biblioteca;
