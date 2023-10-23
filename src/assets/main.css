@@ -24,3 +24,10 @@ html{
     animation-duration: 1s;
     animation-name: fade-in;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
