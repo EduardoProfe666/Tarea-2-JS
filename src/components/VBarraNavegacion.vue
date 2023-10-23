@@ -1,6 +1,6 @@
 <template>
     <input placeholder="Buscar un libro..." id = "buscador">
-    <button @click="action()" id="boton_aniadir" >Añadir Libro<img src = "@/assets/images/add_icon.png"></button>
+    <button @click="action()" id="boton_aniadir" >Añadir Libro<img src = "@/assets/images/icons/add_icon.png"></button>
 </template>
 
 <script setup>

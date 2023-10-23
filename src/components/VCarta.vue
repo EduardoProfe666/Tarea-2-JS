@@ -1,6 +1,6 @@
 <template>
     <div id="carta">
-        <img id="caratula" :src ="props.imagen" >
+        <img id="caratula" :src ="props.cover" >
         <label id="titulo" >{{ props.titulo }}</label>
         <label class="subtitulo">por {{ props.autor }}</label>
         <label class="subtitulo">publicado por {{props.publicador}} en {{ props.anno }}</label>
@@ -14,9 +14,9 @@ const props = defineProps({
         type:String,
         default:'Titulo'
     },
-    imagen:{
+    cover:{
         type:String,
-        default:'./src/assets/images/placeholder.png',
+        default:'./src/assets/images/covers/default.png',
         required:true
     },
     autor:{

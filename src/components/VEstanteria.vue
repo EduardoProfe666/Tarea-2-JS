@@ -1,6 +1,6 @@
 <template>
         <div id="estanteria">
-            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" v-on:eliminar_libro="(id)=>enviar_libro_para_eliminar(id)" v-on:enviar_id="(id)=>enviar_libro_para_carta(id)" />
+            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :thumbnail="libro.getThumbnail()" v-on:eliminar_libro="(id)=>enviar_libro_para_eliminar(id)" v-on:enviar_id="(id)=>enviar_libro_para_carta(id)" />
         </div>
 </template>
 

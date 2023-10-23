@@ -1,8 +1,8 @@
 <template>
     <div @click="emit_id(props.codigo)" id="libro">
-        <img id="caratula" src ="@/assets/images/placeholder.png">
+        <img id="caratula" :src ="props.thumbnail">
         <label id="titulo">{{ props.titulo }}</label>
-        <img @click="emit_eliminar(props.codigo)" id = "borrar" src="@/assets/images/delete_icon.png">
+        <img @click="emit_eliminar(props.codigo)" id = "borrar" src="@/assets/images/icons/delete_icon.png">
     </div>
     
 </template>
@@ -13,6 +13,11 @@ const props = defineProps({
     titulo:{
         type:String,
         default:'Titulo'
+    },
+    thumbnail:{
+        type:String,
+        default:'./src//assets/images/thumbnails/default_t.png',
+        required:true
     },
     codigo:{
         default:'1'
