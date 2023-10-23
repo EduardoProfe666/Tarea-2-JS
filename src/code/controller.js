@@ -30,4 +30,5 @@ export const solicitarLibros = () => {
     return data;
 }
 
+export const buscarLibro = (titulo) => biblioteca.buscarLibros(titulo);
 export const buscarLibroporID = (id)=>biblioteca.buscarLibro(id);

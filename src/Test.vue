@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { nuevoLibro, solicitarLibros } from './code/controller.js';
+import { nuevoLibro, solicitarLibros, buscarLibro } from './code/controller.js';
 
 const titulo = ref('');
 const autor = ref('');
@@ -17,6 +17,10 @@ const libros = computed(()=>data.value);
         <input type="text" placeholder="autor" v-model="autor">
         <input type="number" v-model="anno">
         <button>nuevo libro</button>
+    </form>
+    <form action="" @submit.prevent="()=>data = buscarLibro(titulo)">
+        <input type="text" name="" id="" v-model="titulo">
+        <button>search</button>
     </form>
     <div>
         <p v-for="libro in libros" :key="libro.id">
