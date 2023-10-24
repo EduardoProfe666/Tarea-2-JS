@@ -44,6 +44,7 @@ const titulo = ref('');
         display: flex;
         align-items: center;
         color: white;
+        text-align: center;
         box-shadow: 0px 0px 8px  white;
         border-color: white;
         border-style:solid;
@@ -57,7 +58,7 @@ const titulo = ref('');
         font-size: 17px;
         padding-left: 20px;
         padding-right: 20px;
-        width: 175px;
+        width: 200px;
     }
     #boton_aniadir:hover{
         transform: scale(1.1);
@@ -68,7 +69,7 @@ const titulo = ref('');
     }
     @media only screen and (max-width:700px){
         #boton_aniadir{
-            width: 125px;
+            width: 130px;
         }
     }
 </style>

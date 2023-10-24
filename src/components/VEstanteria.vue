@@ -39,6 +39,7 @@ const enviar_libro_para_eliminar = (id) => {
 #estanteria {
   padding: 20px;
   display: flex;
+  width: 200px;
   flex-direction: column;
   position: absolute;
   margin-left: 10%;
@@ -48,4 +49,10 @@ const enviar_libro_para_eliminar = (id) => {
   overflow: auto;
   box-shadow: 0px 0px 8px white;
 }
+@media only screen and (max-width: 700px) {
+  #estanteria{
+    width: 130px;
+  }
+}
+
 </style>

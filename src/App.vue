@@ -2,17 +2,15 @@
 import { ref } from 'vue'
 import VEstanteria from './components/VEstanteria.vue'
 import VCarta from './components/VCarta.vue'
-import { Libro } from './code/libro'
 import VBarraNavegacion from './components/VBarraNavegacion.vue'
 import VAniadirLibro from './components/VAniadirLibro.vue'
 import VEliminarLibro from './components/VEliminarLibro.vue'
 
-const libro = ref(new Libro('', 'Autor', 2000, 'Publicador', 'Sinopsis...', '', ''))
+const libro = ref(null)
 
 let mostrar_componente_aniadir = ref(false)
 
 let mostrar_componente_eliminar = ref(false)
-
 </script>
 
 <template>
@@ -25,7 +23,7 @@ let mostrar_componente_eliminar = ref(false)
       v-on:eliminar_libro="() => (mostrar_componente_eliminar = true)"
     ></VEstanteria>
     <VCarta
-      v-if="libro.getThumbnail() !== ''"
+      v-if="libro"
       :titulo="libro.getTitulo()"
       :autor="libro.getAutor()"
       :anno="libro.getAnnoPublicacion()"
@@ -37,7 +35,12 @@ let mostrar_componente_eliminar = ref(false)
   </div>
   <VAniadirLibro v-if="mostrar_componente_aniadir === true"></VAniadirLibro>
   <VEliminarLibro
-    v-on:aceptar="()=>{libro.setThumbnail(''); mostrar_componente_eliminar = false}"
+    v-on:aceptar="
+      () => {
+        libro=null
+        mostrar_componente_eliminar = false
+      }
+    "
     v-on:cancelar="() => (mostrar_componente_eliminar = false)"
     v-if="mostrar_componente_eliminar === true"
     :codigo="libro.getId()"
@@ -45,7 +48,6 @@ let mostrar_componente_eliminar = ref(false)
 </template>
 
 <style scoped>
-
 #titulo {
   user-select: none;
   font-size: 40px;
