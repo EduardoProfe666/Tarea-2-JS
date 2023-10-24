@@ -1,7 +1,6 @@
 <template>
     <div @click="emit_id(props.codigo)" id="libro">
         <img id="caratula" :src ="props.thumbnail">
-        <label id="titulo">{{ props.titulo }}</label>
         <img @click="emit_eliminar(props.codigo)" id = "borrar" src="@/assets/images/icons/delete_icon.png">
     </div>
     
@@ -9,7 +8,6 @@
 
 <script setup>
 const props = defineProps({
-
     titulo:{
         type:String,
         default:'Titulo'
@@ -34,13 +32,10 @@ const emit_eliminar = (id) => emit('eliminar_libro', id)
         display: flex;
         flex-direction: column;
         margin-bottom: 30px;
-        width: 80%;
-        max-width: 200px;
+        width: 130px;
         background-color: white;
         transition: all ease 250ms;
-        border-radius: 10px;
-        text-align: center;
-        height: 500px;
+        border-radius: 20px;
         box-shadow: 0px 0px 8px  black;
         align-items: center;
     }
@@ -52,29 +47,27 @@ const emit_eliminar = (id) => emit('eliminar_libro', id)
         transform: scale(1.2);
         opacity: 0.5; 
     }
-    #titulo{  
-        font-size: 18px;
-        user-select: none;
-        color: black;
-        padding: 10px;
-        word-wrap: break-word;
-    }
     #caratula{
         height: 150px;
         width: 100%;
-        border-radius: 5px;
+        border-radius: 20px;
         pointer-events: none;
         user-select: none;
     }
     #borrar{
         transition: all ease 250ms;
         opacity: 0;
-        width: 25px;
-        padding-bottom: 5px;
+        width: 30px;
+        padding: 3px;
+        margin-top: 80%;
+        position: absolute;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px  black;
         
     }
     #libro:hover #borrar{
-        opacity: 0.5;
+        opacity: 1;
     }
     #borrar:hover{
         scale: 1.2;
@@ -83,15 +76,15 @@ const emit_eliminar = (id) => emit('eliminar_libro', id)
         scale: 1.4;
     }
     @media only screen and (max-width:700px){
-        #titulo{
-            font-size: 12px;
-        }
         #caratula{
             height: 90px;  
         }
         #libro{
             margin-bottom: 20px;
-            width: 100px;
+            width: 80px;
+        }
+        #borrar{
+            width: 20px;
         }
     }
 

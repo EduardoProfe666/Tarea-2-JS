@@ -8,7 +8,7 @@ html{
     background-attachment: fixed;
     background-size: cover;
     color: white;
-   
+    max-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 @keyframes fade-in {
