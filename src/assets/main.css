@@ -1,28 +1,15 @@
-html{
-    background-image: linear-gradient(
-        to right,
-        rgba(0,0,0,0.3),
-        rgba(0,0,0,0.3)
-    ), url('images/backgrounds/wood.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: white;
-    max-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('images/backgrounds/wood.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-@keyframes fade-in {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-    
-}
-#app{
-    animation-duration: 1s;
-    animation-name: fade-in;
+#app {
+  animation-duration: 1s;
+  animation-name: fade-in;
 }
 *,
 *::before,
@@ -31,3 +18,22 @@ html{
   margin: 0;
   font-weight: normal;
 }
+.componente-cristal {
+    background: rgba(255, 255, 255, 0.29);
+    backdrop-filter: blur(12.1px);
+    -webkit-backdrop-filter: blur(12.1px);
+    border-color: white;
+    border-radius: 15px;
+    border-style: solid;
+    text-align: center;
+    align-items: center;
+    display: flex;
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

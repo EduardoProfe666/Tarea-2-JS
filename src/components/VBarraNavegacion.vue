@@ -13,14 +13,14 @@ const action= ()=>emit('aniadir_libro')
         margin-top: 15px;
         border-radius: 15px;
         position: absolute;
-        margin-left: 45%;
-        margin-right: 5%;
-        width:45%;
+        margin-left: 40%;
+        margin-right: 10%;
         border:0px;
         height: 45px;
         font-size: 20px;
         outline: none;
         padding-left: 20px;
+        width: 50%;
     }
     #buscador::placeholder{
         color:gray;
@@ -34,8 +34,8 @@ const action= ()=>emit('aniadir_libro')
         border-radius: 15px;
         position: absolute;
         margin-top: 15px;
-        margin-left: 3%;
-        width: 150px;
+        margin-left: 10%;
+        
         display: flex;
         align-items: center;
         color: white;
@@ -52,6 +52,7 @@ const action= ()=>emit('aniadir_libro')
         font-size: 17px;
         padding-left: 20px;
         padding-right: 20px;
+        width: 175px;
     }
     #boton_aniadir:hover{
         transform: scale(1.1);
@@ -62,7 +63,7 @@ const action= ()=>emit('aniadir_libro')
     }
     @media only screen and (max-width:700px){
         #boton_aniadir{
-            width: 110px;
+            width: 125px;
         }
     }
 </style>
