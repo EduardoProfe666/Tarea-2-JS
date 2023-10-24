@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 import biblioteca from "./biblioteca";
 import { Libro } from "./libro";
 
@@ -18,20 +18,21 @@ export const nuevoLibro = async (titulo, autor, anno_publicacion, publicador = "
 
 export const buscarLibro = (param_titulo) => {
     titulo.value = param_titulo;
-    flag.value=!flag.value;
 };
 
 export const solicitarLibros = () => {
     const data = ref(null);
 
-    watch(flag, async ()=>{
+    watchEffect(async ()=>{
         try {
-            data.value=null;    
+            flag.value;
+            data.value=null;
+            
             data.value = biblioteca.buscarLibros(titulo.value);
         } catch (err) {
             console.log(err);
         }
-    }, {immediate:true});
+    });
 
     return data;
 }
