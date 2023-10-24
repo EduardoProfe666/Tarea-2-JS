@@ -98,17 +98,8 @@ class Biblioteca {
   buscarLibro(id_libro) {
     if (!validarNoNullUndefined(id_libro) || typeof id_libro !== 'string' || id_libro.length != 9)
       throw new Error('Identificador no válido')
-    let indice = -1
 
-    for (let i = 0; i < this.getListadoLibros().length && indice == -1; i++) {
-      if (this.getListadoLibros()[i].getId() === id_libro) {
-        indice = i
-      }
-    }
-
-    if (indice == -1) throw new Error('No existe un libro con el identificador: ' + id_libro)
-
-    return indice
+    return this.getListadoLibros().find(libro => libro.getId() == id_libro);
   }
 
   //----------------- Otros --------------//
