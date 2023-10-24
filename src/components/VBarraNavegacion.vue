@@ -40,7 +40,7 @@ const titulo = ref('');
         position: absolute;
         margin-top: 15px;
         margin-left: 10%;
-        
+        outline: none;
         display: flex;
         align-items: center;
         color: white;

@@ -1,9 +1,11 @@
 <template>
-  <div @click="emit_id(props.codigo)" id="libro">
-    <img id="caratula" :src="props.thumbnail" />
+  <div class="libro">
+    <div @click="emit_id(props.codigo)">
+      <img class="caratula" :src="props.thumbnail" />
+    </div>
     <img
       @click="emit_eliminar(props.codigo)"
-      id="borrar"
+      class="boton-borrar"
       src="@/assets/images/icons/delete_icon.png"
     />
   </div>
@@ -32,62 +34,67 @@ const emit_id = (id) => emit('enviar_id', id)
 const emit_eliminar = (id) => emit('eliminar_libro', id)
 </script>
 <style scoped>
-#libro {
+.libro {
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
-  width: 130px;
-  height: 150px;
-  background-color: white;
-  transition: all ease 250ms;
-  border-radius: 15px;
-  box-shadow: 0px 0px 8px black;
   align-items: center;
+  animation-duration: 1s;
+  animation-name: fade-in;
+  width: 130px;
+  height: 180px;
+  margin-bottom: 30px;
+  transition: all ease 250ms;
 }
-#libro:hover {
+.libro:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-#libro:active {
+.libro:active {
   transform: scale(1.2);
   opacity: 0.5;
 }
-#caratula {
-  height: 150px;
-  width: 100%;
-  border-radius: 15px;
+.caratula {
+  box-shadow: 0px 0px 8px white;
+  height: 180px;
+  width: 130px;
+  border-radius: 10px;
   pointer-events: none;
   user-select: none;
 }
-#borrar {
+.boton-borrar {
   transition: all ease 250ms;
+  position: absolute;
+  margin-top: 130px;
   opacity: 0;
   width: 30px;
   padding: 3px;
-  margin-top: 80%;
-  position: absolute;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px black;
 }
-#libro:hover #borrar {
+
+.libro:hover .boton-borrar {
   opacity: 1;
 }
-#borrar:hover {
+.boton-borrar:hover {
   scale: 1.2;
 }
-#borrar:active {
+.boton-borrar:active {
   scale: 1.4;
 }
 @media only screen and (max-width: 700px) {
-  #caratula {
-    height: 90px;
-  }
-  #libro {
+  .libro {
     margin-bottom: 20px;
     width: 80px;
+    height: 110px;
   }
-  #borrar {
+  .caratula {
+    width: 80px;
+    height: 110px;
+  }
+  .boton-borrar {
+    margin-top: 80px;
+    border-radius: 7px;
     width: 20px;
   }
 }

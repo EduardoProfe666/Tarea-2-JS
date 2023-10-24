@@ -37,7 +37,6 @@ let mostrar_componente_eliminar = ref(false)
   <VEliminarLibro
     v-on:aceptar="
       () => {
-        libro=null
         mostrar_componente_eliminar = false
       }
     "
