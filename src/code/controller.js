@@ -3,6 +3,7 @@ import biblioteca from "./biblioteca";
 import { Libro } from "./libro";
 
 const flag = ref(true);
+const titulo = ref('');
 
 export const nuevoLibro = async (titulo, autor, anno_publicacion, publicador = "publicador",
     contenido = "contenido", cover = "cover", thumbnail = "thumbnail") => {
@@ -15,13 +16,18 @@ export const nuevoLibro = async (titulo, autor, anno_publicacion, publicador = "
     }
 }
 
+export const buscarLibro = (param_titulo) => {
+    titulo.value = param_titulo;
+    flag.value=!flag.value;
+};
+
 export const solicitarLibros = () => {
     const data = ref(null);
 
     watch(flag, async ()=>{
         try {
             data.value=null;    
-            data.value = biblioteca.getListadoLibros();
+            data.value = biblioteca.buscarLibros(titulo.value);
         } catch (err) {
             console.log(err);
         }
@@ -30,5 +36,4 @@ export const solicitarLibros = () => {
     return data;
 }
 
-export const buscarLibro = (titulo) => biblioteca.buscarLibros(titulo);
 export const buscarLibroporID = (id)=>biblioteca.buscarLibro(id);

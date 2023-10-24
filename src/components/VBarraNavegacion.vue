@@ -1,11 +1,16 @@
 <template>
-    <input placeholder="Buscar un libro..." id = "buscador">
+    <form action="" @submit.prevent="()=>buscarLibro(titulo)">
+        <input placeholder="Buscar un libro..." id = "buscador" v-model="titulo">
+    </form>
     <button @click="action()" id="boton_aniadir" >Añadir Libro<img src = "@/assets/images/icons/add_icon.png"></button>
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { buscarLibro } from '../code/controller';
 const emit = defineEmits(['aniadir_libro'])
 const action= ()=>emit('aniadir_libro')
+const titulo = ref('');
 </script>
 
 <style scoped>
