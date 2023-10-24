@@ -17,7 +17,7 @@ const emit = defineEmits(['enviar_libro','eliminar_libro'])
 
 const enviar_libro_para_carta = (id)=>{
     const libro = buscarLibroporID(id);
-    emit('enviar_libro', libros.value[libro]);
+    emit('enviar_libro', libro);
 }
 
 const enviar_libro_para_eliminar = (id)=>{
