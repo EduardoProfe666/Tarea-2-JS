@@ -43,19 +43,18 @@ const props = defineProps({
         box-shadow: 0px 0px 8px  white;
         padding: 20px;
         display: flex;
-        position:absolute;
+        position: fixed;
         align-items: center;
         flex-direction: column;
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        margin-left: 45%;
-        margin-right: 5%;
+        margin-left: 50%;
+        margin-right: 15%;
         margin-top: 90px;
-        margin-bottom: 10%;
-        height: 80%;
-        width: 50%;
-        overflow: scroll;
+        height:80%;
+       
+        overflow: auto;
         text-align: center;
         transition: all ease 250ms;
         background: rgba(255, 255, 255, 0.29);
@@ -69,8 +68,7 @@ const props = defineProps({
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        width: 50%;
-        max-width: 300px;
+        width: 250px;
         pointer-events: none;
         user-select: none;
         box-shadow: 0px 0px 8px  white;
@@ -85,5 +83,24 @@ const props = defineProps({
     }
     #contenido{
         font-size: 20px;
+        text-align: justify;
+    }
+    @media only screen and (max-width:700px){
+        #titulo{
+            padding-top: 20px;
+            font-size: 18px;
+        }
+        #caratula{
+            width: 150px;
+        }
+        .subtitulo{
+            font-size: 15px;
+            padding: 3px;
+        }
+        #contenido{
+            font-size: 14px;
+        }
+        
+        
     }
 </style>

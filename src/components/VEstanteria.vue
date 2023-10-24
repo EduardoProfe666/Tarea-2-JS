@@ -1,7 +1,7 @@
 <template>
-        <div id="estanteria">
-            <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :thumbnail="libro.getThumbnail()" v-on:eliminar_libro="(id)=>enviar_libro_para_eliminar(id)" v-on:enviar_id="(id)=>enviar_libro_para_carta(id)" />
-        </div>
+    <div id="estanteria">
+        <VLibro v-for="libro in libros" :key="libro.getId()" :codigo="libro.getId()" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :thumbnail="libro.getThumbnail()" v-on:eliminar_libro="(id)=>enviar_libro_para_eliminar(id)" v-on:enviar_id="(id)=>enviar_libro_para_carta(id)" />
+    </div>
 </template>
 
 <script setup>
@@ -11,10 +11,9 @@ import VLibro from './VLibro.vue';
 
 const data = solicitarLibros();
 
+const libros = computed(()=>data.value);
 
 const emit = defineEmits(['enviar_libro','eliminar_libro'])
-
-const libros = computed(()=>data.value);
 
 const enviar_libro_para_carta = (id)=>{
     const libro = buscarLibroporID(id);
@@ -25,6 +24,7 @@ const enviar_libro_para_eliminar = (id)=>{
     const libro = buscarLibroporID(id);
     emit('eliminar_libro', libros.value[libro]);
 }
+
 </script>
 
 <style scoped>
@@ -40,11 +40,10 @@ const enviar_libro_para_eliminar = (id)=>{
         border-color: white;
         border-radius: 15px;
         border-style:solid;
-        margin-left:3%;
+        margin-left:15%;
         margin-top: 90px;
         margin-bottom: 10%;
         height: 80%;
-        width: 30%;
         overflow: auto;
         box-shadow: 0px 0px 8px  white;
     }
