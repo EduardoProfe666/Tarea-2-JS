@@ -1,12 +1,14 @@
 <template>
     <div @click="emit_id(props.codigo)" id="libro">
         <img id="caratula" :src ="props.thumbnail">
-        <img @click="emit_eliminar(props.codigo)" id = "borrar" src="@/assets/images/icons/delete_icon.png">
+        <img @click="()=>eliminarLibro(props.codigo)" id = "borrar" src="@/assets/images/icons/delete_icon.png">
     </div>
     
 </template>
 
 <script setup>
+import { eliminarLibro } from '../code/controller.js';
+
 const props = defineProps({
     titulo:{
         type:String,
@@ -24,7 +26,6 @@ const props = defineProps({
 })
 const emit = defineEmits(['enviar_id', 'eliminar_libro'])
 const emit_id= (id)=>emit('enviar_id', id)
-const emit_eliminar = (id) => emit('eliminar_libro', id)
     
 </script>
 <style scoped>
