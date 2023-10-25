@@ -25,8 +25,8 @@ const libros = computed(() => data.value)
 
 const emit = defineEmits(['enviar_libro', 'eliminar_libro'])
 
-const enviar_libro_para_carta = (id)=>{
-    const libro = buscarLibroporID(id);
+const enviar_libro_para_carta = async (id)=>{
+    const libro = await buscarLibroporID(id);
     emit('enviar_libro', libro);
 }
 
