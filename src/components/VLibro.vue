@@ -12,6 +12,7 @@
 </template>
 
 <script setup>
+
 const props = defineProps({
   titulo: {
     type: String,

@@ -44,7 +44,7 @@ class Biblioteca {
    * @param {string | null | undefined} thumbnail
    */
   editarLibro(id_libro, titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail) {
-    let libro = this.getListadoLibros()[this.buscarLibro(id_libro)]
+    let libro = this.getListadoLibros()[this.buscarIndiceLibro(id_libro)]
     if (validarNoNullUndefined(titulo)) libro.setTitulo(titulo)
     if (validarNoNullUndefined(autor)) libro.setAutor(autor)
     if (validarNoNullUndefined(anno_publicacion)) libro.setAnnoPublicacion(anno_publicacion)
@@ -59,9 +59,12 @@ class Biblioteca {
    * @param {string} id_libro
    */
   eliminarLibro(id_libro) {
-    this.getListadoLibros().splice(this.buscarLibro(id_libro), 1)
+    this.getListadoLibros().splice(this.buscarIndiceLibro(id_libro), 1)
   }
 
+  buscarIndiceLibro(id_libro){
+    return this.getListadoLibros().findIndex(libro => libro.getId() == id_libro);
+  }
   //--------------- Buscadores ---------------//
   /**
    * Permite filtrar el listado de libros por un autor determinado

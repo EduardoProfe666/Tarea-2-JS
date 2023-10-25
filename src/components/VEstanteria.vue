@@ -14,11 +14,12 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { solicitarLibros, buscarLibroporID } from '../code/controller'
-import VLibro from './VLibro.vue'
+import { computed, onMounted, ref } from 'vue';
+import { solicitarLibros, buscarLibroporID } from '../code/controller';
+import { useEventEmitter } from '../code/useEventEmitter';
+import VLibro from './VLibro.vue';
 
-const data = solicitarLibros()
+const data = ref([]);
 
 const libros = computed(() => data.value)
 
@@ -33,6 +34,15 @@ const enviar_libro_para_eliminar = (id) => {
   const libro = buscarLibroporID(id)
   emit('eliminar_libro', libros.value[libro])
 }
+
+onMounted(async ()=>{
+    data.value = await solicitarLibros()
+    useEventEmitter().listen('actualizar', async (event)=>{    
+        let { titulo , autor, anno, publicacion } = event.detail || [null, null, null, null];
+        data.value = await solicitarLibros(titulo, autor, anno, publicacion);
+    })
+})
+
 </script>
 
 <style scoped>
