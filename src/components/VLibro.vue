@@ -12,6 +12,8 @@
 </template>
 
 <script setup>
+import { useEventEmitter } from '../code/useEventEmitter';
+
 
 const props = defineProps({
   titulo: {
@@ -32,7 +34,9 @@ const emit = defineEmits(['enviar_id', 'eliminar_libro'])
 
 const emit_id = (id) => emit('enviar_id', id)
 
-const emit_eliminar = (id) => emit('eliminar_libro', id)
+const emit_eliminar = (id) =>{ 
+  useEventEmitter().dispatchEvent('eliminar_libro', id);
+}
 </script>
 <style scoped>
 .libro {

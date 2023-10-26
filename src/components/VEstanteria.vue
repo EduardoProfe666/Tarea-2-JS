@@ -7,7 +7,6 @@
       :titulo="libro.getTitulo()"
       :autor="libro.getAutor()"
       :thumbnail="libro.getThumbnail()"
-      v-on:eliminar_libro="(id) => enviar_libro_para_eliminar(id)"
       v-on:enviar_id="(id) => enviar_libro_para_carta(id)"
     />
   </div>
@@ -28,11 +27,6 @@ const emit = defineEmits(['enviar_libro', 'eliminar_libro'])
 const enviar_libro_para_carta = async (id)=>{
     const libro = await buscarLibroporID(id);
     emit('enviar_libro', libro);
-}
-
-const enviar_libro_para_eliminar = (id) => {
-  const libro = buscarLibroporID(id)
-  emit('eliminar_libro', libros.value[libro])
 }
 
 onMounted(async ()=>{

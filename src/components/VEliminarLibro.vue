@@ -3,7 +3,7 @@
     <div class="componente-cristal" id="eliminar-contenedor">
       <h2 id="eliminar-titulo">¿Está seguro de que desea eliminar el libro?</h2>
       <div id="eliminar-botones">
-        <button class="componente-cristal" @click="()=>{eliminarLibro(props.codigo); cerrar()}">Aceptar</button>
+        <button class="componente-cristal" @click="cerrar_refrescar(props.codigo)">Aceptar</button>
         <button class="componente-cristal" @click="cerrar()">Cancelar</button>
       </div>
     </div>
@@ -13,12 +13,12 @@
 <script setup>
 import { eliminarLibro } from '../code/controller';
 
-const emit = defineEmits(['cerrar'])
-
 const props = defineProps({
   codigo: String
 })
+const emit = defineEmits(['cerrar','cerrar_refrescar'])
 const cerrar = () => emit('cerrar')
+const cerrar_refrescar = (id) => {eliminarLibro(props.codigo);emit('cerrar_refrescar',id)}
 </script>
 <style scoped>
 #contenedor-principal {
