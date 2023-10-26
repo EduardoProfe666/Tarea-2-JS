@@ -35,12 +35,7 @@ let mostrar_componente_eliminar = ref(false)
   </div>
   <VAniadirLibro v-if="mostrar_componente_aniadir === true"></VAniadirLibro>
   <VEliminarLibro
-    v-on:aceptar="
-      () => {
-        mostrar_componente_eliminar = false
-      }
-    "
-    v-on:cancelar="() => (mostrar_componente_eliminar = false)"
+    v-on:cerrar="() => (mostrar_componente_eliminar = false)"
     v-if="mostrar_componente_eliminar === true"
     :codigo="libro.getId()"
   ></VEliminarLibro>

@@ -3,21 +3,22 @@
     <div class="componente-cristal" id="eliminar-contenedor">
       <h2 id="eliminar-titulo">¿Está seguro de que desea eliminar el libro?</h2>
       <div id="eliminar-botones">
-        <button class="componente-cristal" @click="aceptar_eliminar_libro()">Aceptar</button>
-        <button class="componente-cristal" @click="cancelar_eliminar_libro()">Cancelar</button>
+        <button class="componente-cristal" @click="()=>{eliminarLibro(props.codigo); cerrar()}">Aceptar</button>
+        <button class="componente-cristal" @click="cerrar()">Cancelar</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-const emit = defineEmits(['aceptar', 'cancelar'])
+import { eliminarLibro } from '../code/controller';
 
-const aceptar_eliminar_libro = () => {
-  emit('aceptar')
-  //eliminar libro aqui
-}
-const cancelar_eliminar_libro = () => emit('cancelar')
+const emit = defineEmits(['cerrar'])
+
+const props = defineProps({
+  codigo: String
+})
+const cerrar = () => emit('cerrar')
 </script>
 <style scoped>
 #contenedor-principal {
