@@ -49,6 +49,7 @@ const emit_eliminar = (id) =>{
   height: 180px;
   margin-bottom: 30px;
   transition: all ease 250ms;
+ 
 }
 .libro:hover {
   transform: scale(1.1);
@@ -65,6 +66,8 @@ const emit_eliminar = (id) =>{
   border-radius: 10px;
   pointer-events: none;
   user-select: none;
+  border-color: white;
+  border-style: solid;
 }
 .boton-borrar {
   transition: all ease 250ms;

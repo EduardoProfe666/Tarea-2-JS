@@ -9,39 +9,58 @@ import { useEventEmitter } from './code/useEventEmitter'
 
 const libro = ref(null)
 
-let mostrar_componente_aniadir = ref(false)
-let mostrar_componente_eliminar = ref({ show: false, id: ''})
-
-
+const mostrar_componente_aniadir = ref(false)
+const mostrar_componente_eliminar = ref({ show: false, id: '' })
+const eliminar_carta = (id) => {
+  mostrar_componente_eliminar.value.show = false
+  if (id === libro.value.getId()) libro.value = null
+}
 useEventEmitter().listen('eliminar_libro', (event) => {
-  mostrar_componente_eliminar.value.id = event.detail;
-  mostrar_componente_eliminar.value.show=true;
-  console.log(mostrar_componente_eliminar.value);
+  mostrar_componente_eliminar.value.id = event.detail
+  mostrar_componente_eliminar.value.show = true
 })
-
 </script>
 
 <template>
-  <VBarraNavegacion v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"></VBarraNavegacion>
-  <div id="main">
+  <VBarraNavegacion
+    v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"
+  ></VBarraNavegacion>
+  <div class="main">
     <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
-    <VCarta v-if="libro" :titulo="libro.getTitulo()" :autor="libro.getAutor()" :anno="libro.getAnnoPublicacion()"
-      :publicador="libro.getPublicador()" :contenido="libro.getContenido()" :cover="libro.getCover()"></VCarta>
-    <h2 v-else id="titulo">Selecciona un libro</h2>
+    <VCarta
+      v-if="libro"
+      :titulo="libro.getTitulo()"
+      :autor="libro.getAutor()"
+      :anno="libro.getAnnoPublicacion()"
+      :publicador="libro.getPublicador()"
+      :contenido="libro.getContenido()"
+      :cover="libro.getCover()"
+    ></VCarta>
+    <div v-else class="selecciona-label" >
+      <label >Selecciona un libro</label>
+    </div>
+      <VAniadirLibro v-if="mostrar_componente_aniadir === true"></VAniadirLibro>
+    <VEliminarLibro
+      v-on:cerrar="() => (mostrar_componente_eliminar.show = false)"
+      v-on:cerrar_refrescar="(id) => eliminar_carta(id)"
+      v-if="mostrar_componente_eliminar.show === true"
+      :codigo="mostrar_componente_eliminar.id"
+    ></VEliminarLibro>
   </div>
-  <VAniadirLibro v-if="mostrar_componente_aniadir === true"></VAniadirLibro>
-  <VEliminarLibro v-on:cerrar="() => mostrar_componente_eliminar.show = false" v-on:cerrar_refrescar="(id) => {mostrar_componente_eliminar.show = false; if(id === libro.getId()) libro = null}" v-if="mostrar_componente_eliminar.show === true"
-    :codigo="mostrar_componente_eliminar.id"></VEliminarLibro>
 </template>
 
 <style scoped>
-#titulo {
+.selecciona-label {
+  width: 60%;
   user-select: none;
   font-size: 40px;
-  position: absolute;
-  margin-left: 50%;
-  margin-right: 10%;
-  margin-top: 300px;
+  margin-top: 250px;
+  justify-content: center;
   text-align: center;
+  align-items: center;
+}
+.main {
+  display: flex;
+  margin-top: 45px;
 }
 </style>

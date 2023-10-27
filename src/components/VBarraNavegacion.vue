@@ -1,76 +1,78 @@
 <template>
-    <form action="" @submit.prevent="()=>useEventEmitter().dispatchEvent('actualizar', { titulo })">
-        <input placeholder="Buscar un libro..." id = "buscador" v-model="titulo">
+  <div class="barranavegacion">
+    <button @click="action()" class="boton_aniadir componente-cristal">
+      Añadir Libro<img src="@/assets/images/icons/add_icon.png" />
+    </button>
+
+    <form
+      class="buscador"
+      action=""
+      @submit.prevent="() => useEventEmitter().dispatchEvent('actualizar', { titulo })"
+    >
+      <input placeholder="Buscar un libro..." class="barra-busqueda" v-model="titulo" />
     </form>
-    <button @click="action()" id="boton_aniadir" >Añadir Libro<img src = "@/assets/images/icons/add_icon.png"></button>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useEventEmitter } from '../code/useEventEmitter.js';
+import { ref } from 'vue'
+import { useEventEmitter } from '../code/useEventEmitter.js'
 
 const emit = defineEmits(['aniadir_libro'])
-const action= ()=>emit('aniadir_libro')
-const titulo = ref('');
+const action = () => emit('aniadir_libro')
+const titulo = ref('')
 </script>
 
 <style scoped>
-    #buscador{
-        margin-top: 15px;
-        border-radius: 15px;
-        position: absolute;
-        margin-left: 40%;
-        margin-right: 10%;
-        border:0px;
-        height: 45px;
-        font-size: 20px;
-        outline: none;
-        padding-left: 20px;
-        width: 50%;
-    }
-    #buscador::placeholder{
-        color:gray;
-    }
-    #buscador:focus{
-        box-shadow: 0px 0px 8px  white;
-        border-color: white;
-        border-style:solid;
-    }
-    #boton_aniadir{
-        border-radius: 15px;
-        position: absolute;
-        margin-top: 15px;
-        margin-left: 10%;
-        outline: none;
-        display: flex;
-        align-items: center;
-        color: white;
-        text-align: center;
-        box-shadow: 0px 0px 8px  white;
-        border-color: white;
-        border-style:solid;
-        cursor: pointer;
-        transition: all ease 250ms;
-        background: rgba(255, 255, 255, 0.29);
-        backdrop-filter: blur(12.1px);
-        -webkit-backdrop-filter: blur(12.1px);
-        height: 45px;
-        font-weight: bold;
-        font-size: 17px;
-        padding-left: 20px;
-        padding-right: 20px;
-        width: 200px;
-    }
-    #boton_aniadir:hover{
-        transform: scale(1.1);
-    }
-    #boton_aniadir:active{
-        transform: scale(1.2);
-        opacity: 0.5;
-    }
-    @media only screen and (max-width:700px){
-        #boton_aniadir{
-            width: 130px;
-        }
-    }
+.barranavegacion {
+  display: flex;
+  margin-top: 15px;
+}
+.buscador {
+  margin-right: 10%;
+  width: 100%;
+}
+.barra-busqueda {
+  border-radius: 15px;
+  border: 0px;
+  height: 45px;
+  font-size: 20px;
+  width: 100%;
+  outline: none;
+  padding-left: 20px;
+}
+.barra-busqueda::placeholder {
+  color: gray;
+}
+.barra-busqueda:focus {
+  box-shadow: 0px 0px 8px white;
+  border-color: white;
+  border-style: solid;
+}
+.boton_aniadir {
+  margin-left: 10%;
+  gap: 10px;
+  box-shadow: 0px 0px 8px white;
+  height: 45px;
+  font-weight: bold;
+  font-size: 17px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 200px;
+  min-width: 200px;
+  margin-right: 5%; 
+}
+.boton_aniadir:hover {
+  transform: scale(1.1);
+}
+.boton_aniadir:active {
+  transform: scale(1.2);
+  opacity: 0.5;
+}
+@media only screen and (max-width: 700px) {
+  .boton_aniadir {
+    min-width: 130px;
+    width: 130px;
+  }
+}
 </style>

@@ -18,22 +18,46 @@ html {
   margin: 0;
   font-weight: normal;
 }
+button {
+  cursor: pointer;
+  color: white;
+  transition: all ease 250ms;
+  background-color: rgba(149, 148, 148, 0.5);
+}
+button img {
+  pointer-events: none;
+}
+.modal {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 .componente-cristal {
-    background: rgba(255, 255, 255, 0.29);
-    backdrop-filter: blur(12.1px);
-    -webkit-backdrop-filter: blur(12.1px);
-    border-color: white;
-    border-radius: 15px;
-    border-style: solid;
-    text-align: center;
-    align-items: center;
-    display: flex;
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  border-color: white;
+  border-radius: 15px;
+  border-style: solid;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  transition: all ease 250ms;
+  outline: none;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
   }
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
+}

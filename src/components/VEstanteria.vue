@@ -1,5 +1,5 @@
 <template>
-  <div class="componente-cristal" id="estanteria">
+  <div class="componente-cristal estanteria" >
     <VLibro
       v-for="libro in libros"
       :key="libro.getId()"
@@ -40,22 +40,20 @@ onMounted(async ()=>{
 </script>
 
 <style scoped>
-#estanteria {
+.estanteria {
   padding: 20px;
   display: flex;
-  width: 200px;
+  min-width: 200px;
   flex-direction: column;
-  position: absolute;
   margin-left: 10%;
-  margin-top: 90px;
-  margin-bottom: 10%;
-  height: 80%;
+  margin-right: 5%;
+  height: 600px;
   overflow: auto;
   box-shadow: 0px 0px 8px white;
 }
 @media only screen and (max-width: 700px) {
-  #estanteria{
-    width: 130px;
+  .estanteria{
+    min-width: 130px;
   }
 }
 
