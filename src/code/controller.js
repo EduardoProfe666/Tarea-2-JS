@@ -17,6 +17,6 @@ export const buscarLibro = async ()=>{
     
 }
 
-export const solicitarLibros = async (titulo="") => {
-    return biblioteca.buscarLibros(titulo);
+export const solicitarLibros = async (titulo, autor, anno, publicador) => {
+    return biblioteca.buscarLibros(titulo, autor, anno, publicador);
 }
