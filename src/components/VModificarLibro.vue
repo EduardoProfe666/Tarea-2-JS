@@ -1,33 +1,33 @@
 <template>
   <div class="modal">
-    <form action="" class="componente-cristal contenedor">
+    <form action="" class="componente-cristal contenedor" @submit.prevent="aceptar(props.codigo)">
       <label class="titulo-componente">Por favor, provéenos los datos del libro a modificar:</label>
       <label for="titulo">
         <span>Título: </span>
-        <input type="text" v-model="props.titulo" />
+        <input type="text" v-model="titulo" />
       </label>
       <label for="autor">
         <span>Autor: </span>
-        <input type="text" id="autor" v-model="props.autor" />
+        <input type="text" id="autor" v-model="autor" />
       </label>
       <label for="anio-publicacion">
         <span>Año Publicación: </span>
-        <input type="text" id="anio-publicacion" v-model="props.anio"/>
+        <input type="number" id="anio-publicacion" v-model="anio" />
       </label>
       <label for="publicador">
         <span>Publicador: </span>
-        <input type="text" id="publicador" v-model="props.publicador" />
+        <input type="text" id="publicador" v-model="publicador" />
       </label>
       <label for="contenido">
         <span>Contenido: </span>
-        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="props.contenido"></textarea>
+        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
       </label>
       <label for="cover">
         <span>Cover: </span>
-        <input type="text" id="cover" v-model="props.cover"/>
+        <input type="text" id="cover" v-model="props.cover" />
       </label>
       <div class="contenedor-botones">
-        <button type="submit" class="componente-cristal" @click="aceptar(props.codigo)">
+        <button type="submit" class="componente-cristal">
           Aceptar
         </button>
         <button class="componente-cristal" @click="cancelar()">Cancelar</button>
@@ -36,22 +36,32 @@
   </div>
 </template>
 <script setup>
+import { ref } from 'vue';
+import { editarLibro } from '../code/controller';
 const props = defineProps({
-    codigo:String,
+  codigo: String,
   titulo: String,
   autor: String,
   anio: Number,
-  publicador:String,
-  contenido:String,
+  publicador: String,
+  contenido: String,
   cover: {
     type: String,
     default: './src/assets/images/covers/default.png',
     required: true
   },
 })
+
+const titulo = ref(props.titulo)
+const autor = ref(props.autor)
+const anio = ref(props.anio)
+const publicador = ref(props.publicador)
+const contenido = ref(props.contenido)
+
 const emit = defineEmits(['aceptar', 'cancelar'])
 const cancelar = () => emit('cancelar')
-const aceptar = (id) => {
+const aceptar = async (id) => {
+  await editarLibro(id, titulo.value, autor.value, anio.value, publicador.value, contenido.value);
   emit('aceptar', id)
   //MODIFICAR LIBRO AQUI
 }
@@ -86,13 +96,16 @@ button {
   border-radius: 10px;
   padding: 10px;
 }
+
 button:hover {
   scale: 1.1;
 }
+
 button:active {
   scale: 1.2;
   opacity: 0.5;
 }
+
 label {
   font-size: 20px;
   margin: 5px;
@@ -118,19 +131,22 @@ textarea:focus {
   .contenedor {
     width: 300px;
   }
+
   .titulo-componente {
     font-size: 18px;
   }
+
   label {
     font-size: 14px;
   }
+
   input,
   textarea {
     font-size: 12px;
     height: 20px;
   }
+
   button {
     font-size: 15px;
   }
-}
-</style>
+}</style>
