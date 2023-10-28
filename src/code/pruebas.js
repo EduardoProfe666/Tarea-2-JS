@@ -97,5 +97,11 @@ Biblioteca.imprimirListadoLibros(biblioteca.buscarLibros(null, 'Lil'))
 console.log('Prueba 5:')
 Biblioteca.imprimirListadoLibros(biblioteca.buscarLibros(null, null, null, 'B'))
 */
-console.log('\n')
+// console.log('\n')
 
+// console.log('Pruebas de Edición')
+// console.log('Prueba Editar Título y Autor')
+// biblioteca.editar(l1, 'Gatos Reyes del Mundo', 'Lilita', 2002, 'A', 'ABC')
+// l1.imprimir()
+// console.log('Prueba de Carácter Vacío')
+// biblioteca.editar(l2, 'Gatitos Tiernos', 'Lily Rosa', 'A', 'ABC')

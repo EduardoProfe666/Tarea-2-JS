@@ -62,8 +62,8 @@ class Biblioteca {
     this.getListadoLibros().splice(this.buscarIndiceLibro(id_libro), 1)
   }
 
-  buscarIndiceLibro(id_libro){
-    return this.getListadoLibros().findIndex(libro => libro.getId() == id_libro);
+  buscarIndiceLibro(id_libro) {
+    return this.getListadoLibros().findIndex((libro) => libro.getId() == id_libro)
   }
   //--------------- Buscadores ---------------//
   /**
@@ -106,7 +106,7 @@ class Biblioteca {
     if (!validarNoNullUndefined(id_libro) || typeof id_libro !== 'string' || id_libro.length != 9)
       throw new Error('Identificador no válido')
 
-    return this.getListadoLibros().find(libro => libro.getId() == id_libro);
+    return this.getListadoLibros().find((libro) => libro.getId() == id_libro)
   }
 
   //----------------- Otros --------------//
@@ -127,8 +127,38 @@ class Biblioteca {
     console.log('Listado de libros:')
     for (let libro of libros) libro.imprimir()
   }
+
+  editar(libro, titulo, autor, annoPublicacion, publicador, contenido) {
+    if (
+      validarNoNullUndefined(titulo) &&
+      typeof titulo === 'string' &&
+      titulo.trim().length !== 0
+    ) {
+      if (validarNoNullUndefined(autor) && typeof autor === 'string' && autor.trim().length !== 0) {
+        if (validarNoNullUndefined(annoPublicacion) && typeof annoPublicacion === 'number') {
+          if (
+            validarNoNullUndefined(publicador) &&
+            typeof publicador === 'string' &&
+            publicador.trim().length !== 0
+          ) {
+            if (
+              validarNoNullUndefined(contenido) &&
+              typeof contenido === 'string' &&
+              contenido.trim().length !== 0
+            ) {
+              libro.setTitulo(titulo)
+              libro.setAutor(autor)
+              libro.setAnnoPublicacion(annoPublicacion)
+              libro.setPublicador(publicador)
+              libro.setContenido(contenido)
+            } else throw new Error('El contenido no es válido')
+          } else throw new Error('El publicador no es válido')
+        } else throw new Error('El año de publicación no es válido')
+      } else throw new Error('El autor no es válido')
+    } else throw new Error('El autor no es válido')
+  }
 }
 
-const biblioteca = new Biblioteca();
+const biblioteca = new Biblioteca()
 
-export default biblioteca;
+export default biblioteca
