@@ -1,22 +1,126 @@
 <template>
-    <div id ="background">ADD</div>
-</template>
-<style scoped>
-    #background{
-        background: linear-gradient(
-            to right,
-            rgba(0,0,0,0.7),
-            rgba(0,0,0,0.7)
-        );
-        backdrop-filter: blur(12.1px);
-        -webkit-backdrop-filter: blur(12.1px);
-        height: 100%;
-        position: absolute;
-        font-size: 50px;
-        padding-top: 40%;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+    <div class="modal">
+      <form action="" class="componente-cristal contenedor">
+        <label class="titulo-componente">Por favor, provéenos los datos del libro a añadir:</label>
+        <label for="titulo">
+          <span>Título: </span>
+          <input type="text" />
+        </label>
+        <label for="autor">
+          <span>Autor: </span>
+          <input type="text" id="autor" />
+        </label>
+        <label for="anio-publicacion">
+          <span>Año Publicación: </span>
+          <input type="text" id="anio-publicacion" />
+        </label>
+        <label for="publicador">
+          <span>Publicador: </span>
+          <input type="text" id="publicador" />
+        </label>
+        <label for="contenido">
+          <span>Contenido: </span>
+          <textarea name="t_area" id="area_t" cols="30" rows="10"></textarea>
+        </label>
+        <label for="cover">
+          <span>Cover: </span>
+          <input type="text" id="cover" />
+        </label>
+        <div class="contenedor-botones">
+          <button type="submit" class="componente-cristal" @click="aceptar()">
+            Aceptar
+          </button>
+          <button class="componente-cristal" @click="cancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </template>
+  <script setup>
+  const props = defineProps({
+    codigo: String
+  })
+  const emit = defineEmits(['cerrar'])
+  const cancelar = () => emit('cerrar')
+  const aceptar = () => {
+    //ANIADIR LIBRO AQUI
+    emit('cerrar')
+  }
+  </script>
+  
+  <style scoped>
+  .contenedor {
+    background: rgba(255, 200, 161, 0.29);
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .titulo-componente {
+    margin-top: 3%;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 25px;
+    width: 80%;
+  }
+  
+  .contenedor-botones {
+    display: flex;
+    justify-content: center;
+    gap: 50%;
+    padding: 5%;
+  }
+  
+  button {
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  button:hover {
+    scale: 1.1;
+  }
+  button:active {
+    scale: 1.2;
+    opacity: 0.5;
+  }
+  label {
+    font-size: 20px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+  
+  input,
+  textarea {
+    height: 30px;
+    border-radius: 10px;
+    font-size: 15px;
+    padding-left: 5px;
+    margin-top: 5px;
+  }
+  
+  textarea:focus {
+    height: 100px;
+  }
+  
+  @media only screen and (max-width: 700px) {
+    .contenedor {
+      width: 300px;
     }
-</style>
+    .titulo-componente {
+      font-size: 18px;
+    }
+    label {
+      font-size: 14px;
+    }
+    input,
+    textarea {
+      font-size: 12px;
+      height: 20px;
+    }
+    button {
+      font-size: 15px;
+    }
+  }
+  </style>
