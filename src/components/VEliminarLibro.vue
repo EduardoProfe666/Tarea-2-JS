@@ -1,10 +1,10 @@
 <template>
   <div class="modal">
     <div class="componente-cristal contenedor">
-      <h2 class="titulo">¿Está seguro de que desea eliminar el libro?</h2>
+      <label class="titulo">¿Está seguro de que desea eliminar el libro?</label>
       <div class="contenedor-botones">
-        <button class="componente-cristal" @click="cerrar_refrescar(props.codigo)">Aceptar</button>
-        <button class="componente-cristal" @click="cerrar()">Cancelar</button>
+        <button class="componente-cristal" @click="aceptar(props.codigo)">Aceptar</button>
+        <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>
     </div>
   </div>
@@ -16,9 +16,9 @@ import { eliminarLibro } from '../code/controller';
 const props = defineProps({
   codigo: String
 })
-const emit = defineEmits(['cerrar','cerrar_refrescar'])
-const cerrar = () => emit('cerrar')
-const cerrar_refrescar = (id) => {eliminarLibro(props.codigo);emit('cerrar_refrescar',id)}
+const emit = defineEmits(['aceptar','cancelar'])
+const cancelar = () => emit('cancelar')
+const aceptar = (id) => {eliminarLibro(props.codigo);emit('aceptar',id)}
 </script>
 <style scoped>
 

@@ -75,10 +75,17 @@ const emit_eliminar = (id) =>{
   margin-top: 130px;
   opacity: 0;
   width: 30px;
+  height: 30px;
   padding: 3px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0px 0px 10px black;
+  display: flex;
+  justify-content: center;
+}
+.boton-borrar img{
+  width:100%;
+  height: 100%;
 }
 
 .libro:hover .boton-borrar {
@@ -104,6 +111,7 @@ const emit_eliminar = (id) =>{
     margin-top: 80px;
     border-radius: 7px;
     width: 20px;
+    height: 20px;
   }
 }
 </style>

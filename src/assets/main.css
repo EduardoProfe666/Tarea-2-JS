@@ -27,6 +27,25 @@ button {
 button img {
   pointer-events: none;
 }
+input {
+  font-size: 20px;
+  padding-left: 20px;
+  transition: all ease 500ms;
+}
+input,
+textarea {
+  resize: none;
+  outline: none;
+  border: 0px;
+  transition: all ease 400ms;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 10px white;
+  border-color: white;
+  border-style: solid;
+}
 .modal {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   backdrop-filter: blur(12.1px);

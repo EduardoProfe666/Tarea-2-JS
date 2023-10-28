@@ -34,20 +34,11 @@ const titulo = ref('')
 }
 .barra-busqueda {
   border-radius: 15px;
-  border: 0px;
   height: 45px;
-  font-size: 20px;
   width: 100%;
-  outline: none;
-  padding-left: 20px;
 }
 .barra-busqueda::placeholder {
   color: gray;
-}
-.barra-busqueda:focus {
-  box-shadow: 0px 0px 8px white;
-  border-color: white;
-  border-style: solid;
 }
 .boton_aniadir {
   margin-left: 10%;
