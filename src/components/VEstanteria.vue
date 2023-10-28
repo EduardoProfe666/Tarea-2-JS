@@ -32,8 +32,8 @@ const enviar_libro_para_carta = async (id)=>{
 onMounted(async ()=>{
     data.value = await solicitarLibros()
     useEventEmitter().listen('actualizar', async (event)=>{    
-        let { titulo , autor, anno, publicacion } = event.detail || [null, null, null, null];
-        data.value = await solicitarLibros(titulo, autor, anno, publicacion);
+        let { titulo , autor, anno, publicador } = event.detail || [null, null, null, null];
+        data.value = await solicitarLibros(titulo, autor, anno, publicador);
     })
 })
 
