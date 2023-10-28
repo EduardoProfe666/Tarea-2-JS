@@ -1,26 +1,82 @@
-html{
-    background-image: linear-gradient(
-        to right,
-        rgba(0,0,0,0.3),
-        rgba(0,0,0,0.3)
-    ), url('images/wood.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    color: white;
-   
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url('images/backgrounds/wood.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#app {
+  animation-duration: 1s;
+  animation-name: fade-in;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+button {
+  cursor: pointer;
+  color: white;
+  transition: all ease 250ms;
+  background-color: rgba(149, 148, 148, 0.5);
+}
+button img {
+  pointer-events: none;
+}
+input {
+  font-size: 20px;
+  padding-left: 20px;
+  transition: all ease 500ms;
+}
+input,
+textarea {
+  resize: none;
+  outline: none;
+  border: 0px;
+  transition: all ease 400ms;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+input:focus,
+textarea:focus {
+  box-shadow: 0 0 10px white;
+  border-color: white;
+  border-style: solid;
+}
+.modal {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.componente-cristal {
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  border-color: white;
+  border-radius: 15px;
+  border-style: solid;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  transition: all ease 250ms;
+  outline: none;
 }
 @keyframes fade-in {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-    
-}
-#app{
-    animation-duration: 1s;
-    animation-name: fade-in;
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

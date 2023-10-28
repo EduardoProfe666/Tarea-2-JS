@@ -1,5 +1,5 @@
 import './assets/main.css'
-import './code/pruebas.js';
+import './code/inicializacion.js';
 
 import { createApp } from 'vue'
 import App from './App.vue'
