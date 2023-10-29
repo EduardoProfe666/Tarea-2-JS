@@ -35,7 +35,7 @@ const modificar_libro = (id) => emit('modificar_libro', id)
   padding: 20px;
   flex-direction: column;
   margin-right: 10%;
- 
+  width: 60%;
   overflow: auto;
 }
 .carta:hover {
