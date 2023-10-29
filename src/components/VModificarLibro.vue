@@ -1,31 +1,38 @@
 <template>
   <div class="modal">
     <form action="" class="componente-cristal contenedor">
-      <label class="titulo-componente">Por favor, provéenos los datos del libro a modificar:</label>
-      <label for="titulo">
-        <span>Título: </span>
-        <input type="text" v-model="props.titulo" />
-      </label>
-      <label for="autor">
-        <span>Autor: </span>
-        <input type="text" id="autor" v-model="props.autor" />
-      </label>
-      <label for="anio-publicacion">
-        <span>Año Publicación: </span>
-        <input type="text" id="anio-publicacion" v-model="props.anio"/>
-      </label>
-      <label for="publicador">
-        <span>Publicador: </span>
-        <input type="text" id="publicador" v-model="props.publicador" />
-      </label>
-      <label for="contenido">
-        <span>Contenido: </span>
-        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="props.contenido"></textarea>
-      </label>
-      <label for="cover">
-        <span>Cover: </span>
-        <input type="text" id="cover" v-model="props.cover"/>
-      </label>
+      <div class="contenedor-inputs">
+        <label class="titulo-componente"
+          >Por favor, provéenos los datos del libro a modificar:</label
+        >
+        <label for="titulo">
+          <span>Título: </span>
+          <input type="text" v-model="props.titulo" />
+        </label>
+        <label for="autor">
+          <span>Autor: </span>
+          <input type="text" id="autor" v-model="props.autor" />
+        </label>
+        <label for="anio-publicacion">
+          <span>Año Publicación: </span>
+          <input type="number" id="anio-publicacion" v-model="props.anio" />
+        </label>
+        <label for="publicador">
+          <span>Publicador: </span>
+          <input type="text" id="publicador" v-model="props.publicador" />
+        </label>
+        <label for="contenido">
+          <span>Contenido: </span>
+          <textarea
+            name="t_area"
+            id="area_t"
+            cols="30"
+            rows="10"
+            v-model="props.contenido"
+          ></textarea>
+        </label>
+      </div>
+
       <div class="contenedor-botones">
         <button type="submit" class="componente-cristal" @click="aceptar(props.codigo)">
           Aceptar
@@ -37,17 +44,17 @@
 </template>
 <script setup>
 const props = defineProps({
-    codigo:String,
+  codigo: String,
   titulo: String,
   autor: String,
   anio: Number,
-  publicador:String,
-  contenido:String,
+  publicador: String,
+  contenido: String,
   cover: {
     type: String,
     default: './src/assets/images/covers/default.png',
     required: true
-  },
+  }
 })
 const emit = defineEmits(['aceptar', 'cancelar'])
 const cancelar = () => emit('cancelar')
@@ -64,6 +71,7 @@ const aceptar = (id) => {
   display: flex;
   align-items: center;
   flex-direction: column;
+  height: 90%;
 }
 
 .titulo-componente {
@@ -73,7 +81,13 @@ const aceptar = (id) => {
   font-size: 25px;
   width: 80%;
 }
-
+.contenedor-inputs {
+  height: 80%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .contenedor-botones {
   display: flex;
   justify-content: center;
