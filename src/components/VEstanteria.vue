@@ -31,7 +31,7 @@ const enviar_libro_para_carta = async (id)=>{
 
 onMounted(async ()=>{
     data.value = await solicitarLibros()
-    useEventEmitter().listen('actualizar', async (event)=>{    
+    useEventEmitter().listen('actualizar', async (event)=>{ 
         let { titulo , autor, anno, publicador } = event.detail || [null, null, null, null];
         data.value = await solicitarLibros(titulo, autor, anno, publicador);
     })
@@ -47,7 +47,7 @@ onMounted(async ()=>{
   flex-direction: column;
   margin-left: 10%;
   margin-right: 5%;
-  height: 600px;
+  
   overflow: auto;
   box-shadow: 0px 0px 8px white;
 }

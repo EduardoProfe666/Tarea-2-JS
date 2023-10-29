@@ -66,7 +66,6 @@ useEventEmitter().listen('eliminar_libro', (event) => {
       :anio="libro.getAnnoPublicacion()"
       :publicador="libro.getPublicador()"
       :contenido="libro.getContenido()"
-      :cover="libro.getCover()"
     ></VModificarLibro>
   </div>
 </template>
@@ -75,6 +74,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
 .selecciona-label {
   width: 60%;
   user-select: none;
+  
   font-size: 40px;
   margin-top: 250px;
   justify-content: center;
@@ -82,6 +82,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
   align-items: center;
 }
 .main {
+  height: 80vh;
   display: flex;
   margin-top: 45px;
 }
