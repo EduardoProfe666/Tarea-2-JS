@@ -1,44 +1,40 @@
 <template>
   <div class="modal">
-
-
     <form action="" class="componente-cristal contenedor" @submit.prevent="aceptar(props.codigo)">
       <label class="titulo-componente">Por favor, provéenos los datos del libro a modificar:</label>
       <div class="contenedor-inputs">
-      <label for="titulo">
-        <span>Título: </span>
-        <input type="text" v-model="titulo" />
-      </label>
-      <label for="autor">
-        <span>Autor: </span>
-        <input type="text" id="autor" v-model="autor" />
-      </label>
-      <label for="anio-publicacion">
-        <span>Año Publicación: </span>
-        <input type="number" id="anio-publicacion" v-model="anio" />
-      </label>
-      <label for="publicador">
-        <span>Publicador: </span>
-        <input type="text" id="publicador" v-model="publicador" />
-      </label>
-      <label for="contenido">
-        <span>Contenido: </span>
-        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
-      </label>
-    </div>
+        <label for="titulo">
+          <span>Título: </span>
+          <input type="text" v-model="titulo" />
+        </label>
+        <label for="autor">
+          <span>Autor: </span>
+          <input type="text" id="autor" v-model="autor" />
+        </label>
+        <label for="anio-publicacion">
+          <span>Año Publicación: </span>
+          <input type="number" id="anio-publicacion" v-model="anio" />
+        </label>
+        <label for="publicador">
+          <span>Publicador: </span>
+          <input type="text" id="publicador" v-model="publicador" />
+        </label>
+        <label for="contenido">
+          <span>Contenido: </span>
+          <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
+        </label>
+      </div>
 
       <div class="contenedor-botones">
-        <button type="submit" class="componente-cristal">
-          Aceptar
-        </button>
+        <button type="submit" class="componente-cristal">Aceptar</button>
         <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>
     </form>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue';
-import { editarLibro } from '../code/controller';
+import { ref } from 'vue'
+import { editarLibro } from '../code/controller'
 const props = defineProps({
   codigo: String,
   titulo: String,
@@ -62,8 +58,13 @@ const contenido = ref(props.contenido)
 const emit = defineEmits(['aceptar', 'cancelar'])
 const cancelar = () => emit('cancelar')
 const aceptar = async (id) => {
-  await editarLibro(id, titulo.value, autor.value, anio.value, publicador.value, contenido.value);
-  emit('aceptar', id)
+  try {
+    await editarLibro(id,titulo.value, autor.value, anio.value, publicador.value, contenido.value)
+    emit('aceptar', id)
+  } catch (e) {
+    alert(e.message)
+  }
+  
 }
 </script>
 
@@ -156,4 +157,5 @@ textarea:focus {
   button {
     font-size: 15px;
   }
-}</style>
+}
+</style>

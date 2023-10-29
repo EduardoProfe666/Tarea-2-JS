@@ -47,8 +47,13 @@ const contenido = ref('')
 const emit = defineEmits(['cerrar'])
 const cancelar = () => emit('cerrar')
 const aceptar = async () => {
-  await nuevoLibro(titulo.value, autor.value, anio.value, publicador.value, contenido.value);
-  emit('cerrar')
+  try{
+    await nuevoLibro(titulo.value, autor.value, anio.value, publicador.value, contenido.value);
+    emit('cerrar')
+  }catch(e){
+    alert(e.message)
+  }
+
 }
 </script>
 

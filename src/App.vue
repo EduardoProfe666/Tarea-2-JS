@@ -66,7 +66,6 @@ useEventEmitter().listen('eliminar_libro', (event) => {
       :anio="libro.getAnnoPublicacion()"
       :publicador="libro.getPublicador()"
       :contenido="libro.getContenido()"
-      :cover="libro.getCover()"
     ></VModificarLibro>
   </div>
 </template>

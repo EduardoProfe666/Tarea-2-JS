@@ -128,7 +128,7 @@ class Biblioteca {
     for (let libro of libros) libro.imprimir()
   }
 
-  editar(libro, titulo, autor, annoPublicacion, publicador, contenido) {
+  validar(titulo, autor, annoPublicacion, publicador, contenido) {
     if (
       validarNoNullUndefined(titulo) &&
       typeof titulo === 'string' &&
@@ -146,16 +146,12 @@ class Biblioteca {
               typeof contenido === 'string' &&
               contenido.trim().length !== 0
             ) {
-              libro.setTitulo(titulo)
-              libro.setAutor(autor)
-              libro.setAnnoPublicacion(annoPublicacion)
-              libro.setPublicador(publicador)
-              libro.setContenido(contenido)
+              console.log(`libro validado`)
             } else throw new Error('El contenido no es válido')
           } else throw new Error('El publicador no es válido')
         } else throw new Error('El año de publicación no es válido')
       } else throw new Error('El autor no es válido')
-    } else throw new Error('El autor no es válido')
+    } else throw new Error('El título no es válido')
   }
 }
 
