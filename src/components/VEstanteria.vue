@@ -47,7 +47,6 @@ onMounted(async ()=>{
   flex-direction: column;
   margin-left: 10%;
   margin-right: 5%;
-  
   overflow: auto;
   box-shadow: 0px 0px 8px white;
 }
@@ -56,5 +55,4 @@ onMounted(async ()=>{
     min-width: 130px;
   }
 }
-
 </style>

@@ -10,16 +10,13 @@ import { useEventEmitter } from './code/useEventEmitter'
 
 const libro = ref(null)
 const mostrar_componente_aniadir = ref(false)
-const mostrar_componente_modificar = ref({ show: false, id: '' })
+const mostrar_componente_modificar = ref(false)
 const mostrar_componente_eliminar = ref({ show: false, id: '' })
 const eliminar_carta = (id) => {
   mostrar_componente_eliminar.value.show = false
   if (id === libro.value.getId()) libro.value = null
 }
-const actualizar_carta = () => {
-  mostrar_componente_modificar.value.show = false
-  // ACTUALIZAR CARTA
-}
+
 useEventEmitter().listen('eliminar_libro', (event) => {
   mostrar_componente_eliminar.value.id = event.detail
   mostrar_componente_eliminar.value.show = true
@@ -33,7 +30,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
   <div class="main">
     <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
     <VCarta
-      v-on:modificar_libro="() => (mostrar_componente_modificar.show = true)"
+      v-on:modificar_libro="() => (mostrar_componente_modificar = true)"
       v-if="libro"
       :codigo="libro.getId()"
       :titulo="libro.getTitulo()"
@@ -43,7 +40,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
       :contenido="libro.getContenido()"
       :cover="libro.getCover()"
     ></VCarta>
-    <div v-else class="selecciona-label">
+    <div v-else class="label-selecciona-un-libro">
       <label>Selecciona un libro</label>
     </div>
     <VAniadirLibro
@@ -57,9 +54,8 @@ useEventEmitter().listen('eliminar_libro', (event) => {
       :codigo="mostrar_componente_eliminar.id"
     ></VEliminarLibro>
     <VModificarLibro
-      v-on:cancelar="() => (mostrar_componente_modificar.show = false)"
-      v-on:aceptar="() => actualizar_carta()"
-      v-if="mostrar_componente_modificar.show === true"
+      v-on:cerrar="() => (mostrar_componente_modificar = false)"
+      v-if="mostrar_componente_modificar === true"
       :codigo="libro.getId()"
       :titulo="libro.getTitulo()"
       :autor="libro.getAutor()"
@@ -71,11 +67,10 @@ useEventEmitter().listen('eliminar_libro', (event) => {
 </template>
 
 <style scoped>
-.selecciona-label {
+.label-selecciona-un-libro {
   width: 60%;
-  user-select: none;
   font-size: 40px;
-  margin-top: 250px;
+  display: flex;
   justify-content: center;
   text-align: center;
   align-items: center;

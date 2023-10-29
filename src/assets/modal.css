@@ -1,0 +1,81 @@
+/*Componentes modal para modificar y aniadir libros*/
+.modal {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  backdrop-filter: blur(12.1px);
+  -webkit-backdrop-filter: blur(12.1px);
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.modal-contenedor {
+  background: rgba(255, 200, 161, 0.29);
+  width: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+ 
+}
+.modal-inputs {
+  height: 80%;
+  width: 80%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.modal-botones {
+  display: flex;
+  justify-content: center;
+  gap: 50%;
+  padding: 5%;
+}
+
+.modal-inputs label {
+  font-size: 20px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.modal-titulo {
+  font-size: 25px;
+  margin-top: 3%;
+  width: 80%;
+}
+
+.modal input,
+.modal textarea {
+  height: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  padding-left: 5px;
+  margin-top: 5px;
+}
+
+.modal textarea:focus {
+  height: 100px;
+}
+
+@media only screen and (max-width: 700px) {
+  .modal-contenedor {
+    width: 300px;
+  }
+  .modal-titulo {
+    font-size: 18px;
+  }
+  .modal-inputs label,
+  .modal textarea {
+    font-size: 14px;
+  }
+  .modal button {
+    font-size: 15px;
+  }
+}
