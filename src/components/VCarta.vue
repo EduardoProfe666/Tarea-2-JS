@@ -1,10 +1,10 @@
 <template>
   <div class="componente-cristal carta">
-    <img class="caratula" :src="props.cover" />
-    <label class="titulo">{{ props.titulo }}</label>
-    <label class="subtitulo">por {{ props.autor }}</label>
-    <label class="subtitulo">publicado por {{ props.publicador }} en {{ props.anio }}</label>
-    <p class="contenido">{{ props.contenido }}</p>
+    <img class="carta-cover" :src="props.cover" />
+    <label class="carta-titulo">{{ props.titulo }}</label>
+    <label class="carta-subtitulo">por {{ props.autor }}</label>
+    <label class="carta-subtitulo">publicado por {{ props.publicador }} en {{ props.anio }}</label>
+    <p class="carta-contenido">{{ props.contenido }}</p>
     <div class="boton-modificar" @click="modificar_libro(props.codigo)">
       <img src="./../assets/images/icons/edit_icon.png">
     </div>
@@ -41,7 +41,7 @@ const modificar_libro = (id) => emit('modificar_libro', id)
 .carta:hover {
   scale: 1.05;
 }
-.caratula {
+.carta-cover {
   border-color: white;
   border-radius: 15px;
   border-style: solid;
@@ -50,15 +50,16 @@ const modificar_libro = (id) => emit('modificar_libro', id)
   user-select: none;
   box-shadow: 0px 0px 8px white;
 }
-.titulo {
+.carta-titulo {
+  font-weight: bold;
   padding-top: 20px;
   font-size: 30px;
 }
-.subtitulo {
+.carta-subtitulo {
   font-size: 20px;
   padding: 3px;
 }
-.contenido {
+.carta-contenido {
   font-size: 20px;
   text-align: justify;
 }
@@ -74,6 +75,7 @@ const modificar_libro = (id) => emit('modificar_libro', id)
   box-shadow: 0px 0px 10px black;
   display: flex;
   justify-content: center;
+  opacity:0;
 }
 .boton-modificar img{
   width:100%;
@@ -85,24 +87,27 @@ const modificar_libro = (id) => emit('modificar_libro', id)
 .boton-modificar:active {
   scale: 1.4;
 }
+.carta:hover .boton-modificar {
+  opacity: 1;
+}
 @media only screen and (max-width: 700px) {
   .boton-modificar {
     border-radius: 7px;
     width: 20px;
     height: 20px;
   }
-  .titulo {
+  .carta-titulo {
     padding-top: 20px;
     font-size: 18px;
   }
-  .caratula {
+  .carta-cover {
     width: 150px;
   }
-  .subtitulo {
+  .carta-subtitulo {
     font-size: 15px;
     padding: 3px;
   }
-  .contenido {
+  .carta-contenido {
     font-size: 14px;
   }
 

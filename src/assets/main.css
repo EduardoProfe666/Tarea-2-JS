@@ -7,9 +7,10 @@ html {
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body,html{
+body,
+html {
   padding: 0;
-  margin:0;
+  margin: 0;
   height: 95vh;
 }
 
@@ -30,10 +31,28 @@ button {
   color: white;
   transition: all ease 250ms;
   background-color: rgba(149, 148, 148, 0.5);
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  padding: 10px;
 }
 button img {
   pointer-events: none;
 }
+
+button:hover {
+  scale: 1.1;
+}
+
+button:active {
+  scale: 1.2;
+  opacity: 0.5;
+}
+label{
+  user-select: none;
+}
+
+
 input {
   font-size: 20px;
   padding-left: 20px;
@@ -53,22 +72,15 @@ textarea:focus {
   border-color: white;
   border-style: solid;
 }
-.modal {
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-  backdrop-filter: blur(12.1px);
-  -webkit-backdrop-filter: blur(12.1px);
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: transparent;
 }
+::-webkit-scrollbar-thumb {
+  background-color: #fbfbfb;
+}
+
+/*Componente transparente*/
 .componente-cristal {
   backdrop-filter: blur(12.1px);
   -webkit-backdrop-filter: blur(12.1px);
@@ -81,6 +93,7 @@ textarea:focus {
   transition: all ease 250ms;
   outline: none;
 }
+/*Animaciones*/
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -89,10 +102,22 @@ textarea:focus {
     opacity: 1;
   }
 }
-::-webkit-scrollbar {
-  width: 6px;
-  background-color: transparent;
+@keyframes rotate {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 360deg;
+  }
 }
-::-webkit-scrollbar-thumb {
-  background-color: #fbfbfb;
+@keyframes pop {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }

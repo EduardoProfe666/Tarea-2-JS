@@ -1,41 +1,28 @@
 <template>
   <div class="libro">
-    <div @click="emit_id(props.codigo)">
+    <div @click="emit('enviar_id', props.codigo)">
       <img class="caratula" :src="props.thumbnail" />
     </div>
     <img
       @click="emit_eliminar(props.codigo)"
       class="boton-borrar"
-      src="@/assets/images/icons/delete_icon.png"
+      src="./../assets/images/icons/delete_icon.png"
     />
   </div>
 </template>
 
 <script setup>
-import { useEventEmitter } from '../code/useEventEmitter';
-
+import { useEventEmitter } from '../code/useEventEmitter'
 
 const props = defineProps({
-  titulo: {
-    type: String,
-    default: 'Titulo'
-  },
-  thumbnail: {
-    type: String,
-    default: './src//assets/images/thumbnails/default_t.png',
-    required: true
-  },
-  codigo: {
-    default: '1'
-  }
+  codigo: String,
+  thumbnail: String
 })
 
 const emit = defineEmits(['enviar_id', 'eliminar_libro'])
 
-const emit_id = (id) => emit('enviar_id', id)
-
-const emit_eliminar = (id) =>{ 
-  useEventEmitter().dispatchEvent('eliminar_libro', id);
+const emit_eliminar = (id) => {
+  useEventEmitter().dispatchEvent('eliminar_libro', id)
 }
 </script>
 <style scoped>
@@ -49,14 +36,13 @@ const emit_eliminar = (id) =>{
   height: 180px;
   margin-bottom: 30px;
   transition: all ease 250ms;
- 
 }
 .libro:hover {
-  transform: scale(1.1);
+  scale: 1.1;
   cursor: pointer;
 }
 .libro:active {
-  transform: scale(1.2);
+  scale: 1.2;
   opacity: 0.5;
 }
 .caratula {
@@ -83,11 +69,10 @@ const emit_eliminar = (id) =>{
   display: flex;
   justify-content: center;
 }
-.boton-borrar img{
-  width:100%;
+.boton-borrar img {
+  width: 100%;
   height: 100%;
 }
-
 .libro:hover .boton-borrar {
   opacity: 1;
 }
