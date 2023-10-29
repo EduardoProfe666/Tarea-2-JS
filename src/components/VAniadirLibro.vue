@@ -1,44 +1,53 @@
 <template>
   <div class="modal">
-    <form action="" class="componente-cristal contenedor">
-        <div class="contenedor-inputs">
-        <label class="titulo-componente">Por favor, provéenos los datos del libro a añadir:</label>
+
+    <form action="" class="componente-cristal contenedor" @submit.prevent="aceptar()">
+      <label class="titulo-componente">Por favor, provéenos los datos del libro a añadir:</label>
+      <div class="contenedor-inputs">
       <label for="titulo">
         <span>Título: </span>
-        <input type="text" />
+        <input type="text" v-model="titulo"/>
       </label>
       <label for="autor">
         <span>Autor: </span>
-        <input type="text" id="autor" />
+        <input type="text" id="autor" v-model="autor"/>
       </label>
       <label for="anio-publicacion">
         <span>Año Publicación: </span>
-        <input type="number" id="anio-publicacion" />
+        <input type="number" id="anio-publicacion" v-model="anio"/>
       </label>
       <label for="publicador">
         <span>Publicador: </span>
-        <input type="text" id="publicador" />
+        <input type="text" id="publicador" v-model="publicador"/>
       </label>
       <label for="contenido">
         <span>Contenido: </span>
-        <textarea name="t_area" id="area_t" cols="30" rows="10"></textarea>
+        <textarea name="t_area" id="area_t" cols="30" rows="10" v-model="contenido"></textarea>
       </label>
-      </div>
+    </div>
       <div class="contenedor-botones">
-        <button type="submit" class="componente-cristal" @click="aceptar()">Aceptar</button>
+        <button type="submit" class="componente-cristal">
+          Aceptar
+        </button>
         <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>
     </form>
   </div>
 </template>
 <script setup>
-const props = defineProps({
-  codigo: String
-})
+import { ref } from 'vue';
+import { nuevoLibro } from '../code/controller.js';
+
+const titulo = ref('')
+const autor = ref('')
+const anio = ref(0)
+const publicador = ref('')
+const contenido = ref('')
+
 const emit = defineEmits(['cerrar'])
 const cancelar = () => emit('cerrar')
-const aceptar = () => {
-  //ANIADIR LIBRO AQUI
+const aceptar = async () => {
+  await nuevoLibro(titulo.value, autor.value, anio.value, publicador.value, contenido.value);
   emit('cerrar')
 }
 </script>
@@ -51,6 +60,7 @@ const aceptar = () => {
   align-items: center;
   flex-direction: column;
   height: 90%;
+
 }
 
 .titulo-componente {
@@ -79,13 +89,16 @@ button {
   border-radius: 10px;
   padding: 10px;
 }
+
 button:hover {
   scale: 1.1;
 }
+
 button:active {
   scale: 1.2;
   opacity: 0.5;
 }
+
 label {
   font-size: 20px;
   margin: 5px;
@@ -111,19 +124,23 @@ textarea:focus {
   .contenedor {
     width: 300px;
   }
+
   .titulo-componente {
     font-size: 18px;
   }
+
   label {
     font-size: 14px;
   }
-  input,
+
   textarea {
     font-size: 12px;
     height: 20px;
   }
+
   button {
     font-size: 15px;
   }
 }
 </style>
+
