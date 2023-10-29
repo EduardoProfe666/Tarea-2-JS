@@ -1,64 +1,73 @@
 <template>
-  <div class="contenedor-principal">
-    <div class="eliminar-contenedor">
-      <h2 class="eliminar-titulo">¿Está seguro que desea eliminar el libro?</h2>
-      <div class="eliminar-botones">
-        <button class="eliminar-button-aceptar">Aceptar</button>
-        <button class="eliminar-button-cancelar">Cancelar</button>
+
+  <div class="modal">
+    <div class="componente-cristal contenedor">
+      <label class="titulo">¿Está seguro de que desea eliminar el libro?</label>
+      <div class="contenedor-botones">
+        <button class="componente-cristal" @click="aceptar(props.codigo)">Aceptar</button>
+        <button class="componente-cristal" @click="cancelar()">Cancelar</button>
       </div>
     </div>
   </div>
 </template>
 
-<style>
-.contenedor-principal {
-  /* background-color: blue; */
+
+<script setup>
+import { eliminarLibro } from '../code/controller';
+
+const props = defineProps({
+  codigo: String
+})
+const emit = defineEmits(['aceptar','cancelar'])
+const cancelar = () => emit('cancelar')
+const aceptar = (id) => {eliminarLibro(props.codigo);emit('aceptar',id)}
+</script>
+<style scoped>
+
+.contenedor {
+  background: rgba(255, 200, 161, 0.29);
+  width: 500px;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-.eliminar-contenedor {
-  background-color: burlywood;
-  width: 500px;
-  border-radius: 10%;
-  border: 0.2em solid white;
+.titulo {
+  margin-top: 3%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-size: 25px;
 }
 
-
-.eliminar-titulo {
-  padding-top: 1%;
-  padding-left: 20%;
-  padding-right: 20%;
-  font-size: 1.5em;
+.contenedor-botones {
+  display: flex;
+  justify-content: center;
+  gap: 50%;
+  padding: 10%;
 }
 
-.eliminar-botones {
-  padding-left: 20%;
-  padding-bottom: 1em;
-
+button {
+  font-size: 20px;
+  
+  border-radius: 10px;
+  padding:10px
 }
-
-.eliminar-button-aceptar {
-
-  font-size: 1.5em;
-  border-radius: 45%;
-  background-color: white;
-  margin-left: 1em;
-  margin-right: 1em;
-  border: none;
-  padding: 1% 3% 1% 3%;
-  cursor: pointer;
-  color: dimgray;
+button:hover {
+  scale: 1.1;
 }
-
-.eliminar-button-cancelar {
-  font-size: 1.5em;
-  border-radius: 45%;
-  background-color: white;
-  border: none;
-  padding: 1% 3% 1% 3%;
-  cursor: pointer;
-  color: dimgray;
+button:active {
+  scale: 1.2;
+  opacity: 0.5;
+}
+@media only screen and (max-width: 700px) {
+  .contenedor {
+    width: 300px;
+  }
+  .titulo {
+    font-size: 18px;
+  }
+  button {
+    font-size: 15px;
+  }
 }
 </style>

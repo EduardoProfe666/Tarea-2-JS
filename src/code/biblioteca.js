@@ -44,7 +44,7 @@ class Biblioteca {
    * @param {string | null | undefined} thumbnail
    */
   editarLibro(id_libro, titulo, autor, anno_publicacion, publicador, contenido, cover, thumbnail) {
-    let libro = this.getListadoLibros()[this.buscarLibro(id_libro)]
+    let libro = this.getListadoLibros()[this.buscarIndiceLibro(id_libro)]
     if (validarNoNullUndefined(titulo)) libro.setTitulo(titulo)
     if (validarNoNullUndefined(autor)) libro.setAutor(autor)
     if (validarNoNullUndefined(anno_publicacion)) libro.setAnnoPublicacion(anno_publicacion)
@@ -59,14 +59,21 @@ class Biblioteca {
    * @param {string} id_libro
    */
   eliminarLibro(id_libro) {
-    this.getListadoLibros().splice(this.buscarLibro(id_libro), 1)
+    this.getListadoLibros().splice(this.buscarIndiceLibro(id_libro), 1)
   }
 
+  buscarIndiceLibro(id_libro) {
+    return this.getListadoLibros().findIndex((libro) => libro.getId() == id_libro)
+  }
   //--------------- Buscadores ---------------//
   /**
-   * Permite filtrar el listado de libros por un autor determinado
+   * Permite filtrar el listado de libros por un autor, un título, un año de publicación y un publicador determinado,
+   * pudiendo ser algunos de estos parámetros omitidos.
    *
-   * @param {string} autor Autor de los libros
+   * @param {string} titulo
+   * @param {string} autor
+   * @param {number} annoPublicacion
+   * @param {string} publicador
    * @returns Listado de libros filtrado
    */
   buscarLibros(titulo, autor, annoPublicacion, publicador) {
@@ -98,17 +105,8 @@ class Biblioteca {
   buscarLibro(id_libro) {
     if (!validarNoNullUndefined(id_libro) || typeof id_libro !== 'string' || id_libro.length != 9)
       throw new Error('Identificador no válido')
-    let indice = -1
 
-    for (let i = 0; i < this.getListadoLibros().length && indice == -1; i++) {
-      if (this.getListadoLibros()[i].getId() === id_libro) {
-        indice = i
-      }
-    }
-
-    if (indice == -1) throw new Error('No existe un libro con el identificador: ' + id_libro)
-
-    return indice
+    return this.getListadoLibros().find((libro) => libro.getId() == id_libro)
   }
 
   //----------------- Otros --------------//
@@ -129,8 +127,34 @@ class Biblioteca {
     console.log('Listado de libros:')
     for (let libro of libros) libro.imprimir()
   }
+
+  validar(titulo, autor, annoPublicacion, publicador, contenido) {
+    if (
+      validarNoNullUndefined(titulo) &&
+      typeof titulo === 'string' &&
+      titulo.trim().length !== 0
+    ) {
+      if (validarNoNullUndefined(autor) && typeof autor === 'string' && autor.trim().length !== 0) {
+        if (validarNoNullUndefined(annoPublicacion) && typeof annoPublicacion === 'number') {
+          if (
+            validarNoNullUndefined(publicador) &&
+            typeof publicador === 'string' &&
+            publicador.trim().length !== 0
+          ) {
+            if (
+              validarNoNullUndefined(contenido) &&
+              typeof contenido === 'string' &&
+              contenido.trim().length !== 0
+            ) {
+              console.log(`libro validado`)
+            } else throw new Error('El contenido no es válido')
+          } else throw new Error('El publicador no es válido')
+        } else throw new Error('El año de publicación no es válido')
+      } else throw new Error('El autor no es válido')
+    } else throw new Error('El título no es válido')
+  }
 }
 
-const biblioteca = new Biblioteca();
+const biblioteca = new Biblioteca()
 
-export default biblioteca;
+export default biblioteca
