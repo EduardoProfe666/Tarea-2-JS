@@ -161,6 +161,10 @@ El proyecto fue desplegado con éxito en Github Pages. Se puede acceder a dicho 
 
 ![carta](/assets/carta.png)
 
+### Añadir Libro
+
+![añadir](/assets/annadir.png)
+
 ### Modificar Libro
 
 ![modificar](/assets/modificar.png)
