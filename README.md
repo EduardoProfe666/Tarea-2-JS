@@ -145,7 +145,7 @@ Donde:
 
 ## 🚀 Despliegue en Github Pages:
 
-El proyecto fue desplegado con éxito en Github Pages. Se puede acceder a dicho despliegue a través del [siguiente enlace](https://eduardoprofe666.github.io/tarea-2-js/)
+El proyecto fue desplegado con éxito en Github Pages. Se puede acceder a dicho despliegue a través del [siguiente enlace](https://eduardoprofe666.github.io/Tarea-2-Js/)
 
 ## 📸 Capturas de pantalla
 
