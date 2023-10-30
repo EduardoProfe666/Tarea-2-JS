@@ -1,6 +1,6 @@
 html {
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-    url('images/backgrounds/wood.png');
+    url('/backgrounds/wood.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -48,10 +48,9 @@ button:active {
   scale: 1.2;
   opacity: 0.5;
 }
-label{
+label {
   user-select: none;
 }
-
 
 input {
   font-size: 20px;

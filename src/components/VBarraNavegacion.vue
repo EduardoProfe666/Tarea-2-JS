@@ -1,28 +1,29 @@
 <template>
   <div class="barranavegacion">
     <button @click="action()" class="boton-aniadir componente-cristal">
-      Añadir Libro<img src="./../assets/images/icons/add_icon.png" />
+      Añadir Libro<img src="/icons/add_icon.png" />
     </button>
     <div class="contenedor-buscador">
       <form class="buscador" action="" @submit.prevent="enviarEvento">
-      <input placeholder="titulo" class="barra-busqueda" v-model="titulo" />
-      <input type="text" placeholder="autor" class="barra-busqueda" v-model="autor" />
-      <input
-        type="number"
-        placeholder="año de publicacion"
-        min="0"
-        class="barra-busqueda"
-        v-model="anno"
-      />
-      <input type="text" placeholder="publicador" class="barra-busqueda" v-model="publicador" />
-      <button class="componente-cristal boton-buscar"><img src="./../assets/images/icons/search_icon.png"/></button>
-      
-    </form>
-    <button class="componente-cristal boton-refrescar" @click="refrescarBuscadores()"><img src="./../assets/images/icons/refresh_icon.png"/></button>
-  
+        <input placeholder="Título" class="barra-busqueda" v-model="titulo" />
+        <input type="text" placeholder="Autor" class="barra-busqueda" v-model="autor" />
+        <input
+          type="number"
+          placeholder="Año de publicación"
+          min="0"
+          class="barra-busqueda"
+          v-model="anno"
+        />
+        <input type="text" placeholder="Publicador" class="barra-busqueda" v-model="publicador" />
+        <button class="componente-cristal boton-buscar">
+          <img src="/icons/search_icon.png" />
+        </button>
+      </form>
+      <button class="componente-cristal boton-refrescar" @click="refrescarBuscadores()">
+        <img src="/icons/refresh_icon.png" />
+      </button>
     </div>
-    
-    </div>
+  </div>
 </template>
 
 <script setup>
@@ -44,11 +45,12 @@ const enviarEvento = () => {
     publicador: publicador.value
   })
 }
-const refrescarBuscadores=()=>{
+const refrescarBuscadores = () => {
   titulo.value = ''
-  autor.value=''
-  anno.value=''
-  publicador.value=''
+  autor.value = ''
+  anno.value = ''
+  publicador.value = ''
+  enviarEvento()
 }
 </script>
 
@@ -58,8 +60,8 @@ const refrescarBuscadores=()=>{
   flex-direction: row;
   margin-top: 15px;
 }
-.contenedor-buscador{
-  width:50%;
+.contenedor-buscador {
+  width: 50%;
   display: flex;
   flex-direction: row;
   margin-right: 10%;
@@ -74,22 +76,23 @@ const refrescarBuscadores=()=>{
   padding-left: 1px;
 }
 .barra-busqueda:focus {
-  width:100%;
+  width: 100%;
 }
-.boton-buscar, .boton-refrescar{
+.boton-buscar,
+.boton-refrescar {
   margin-right: 2px;
 }
-.boton-buscar:active img{
+.boton-buscar:active img {
   animation-duration: 250ms;
-  animation-name:pop;
+  animation-name: pop;
 }
-.boton-refrescar:active img{
+.boton-refrescar:active img {
   animation-duration: 250ms;
-  animation-name:rotate;
+  animation-name: rotate;
 }
-.boton-aniadir:active img{
+.boton-aniadir:active img {
   animation-duration: 250ms;
-  animation-name:rotate;
+  animation-name: rotate;
 }
 
 .barra-busqueda::placeholder {

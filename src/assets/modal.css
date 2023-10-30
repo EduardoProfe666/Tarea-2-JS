@@ -1,4 +1,4 @@
-/*Componentes modal para modificar y aniadir libros*/
+/*Componentes modal para modificar y añadir libros*/
 .modal {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   backdrop-filter: blur(12.1px);
@@ -21,7 +21,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
- 
 }
 .modal-inputs {
   height: 80%;
@@ -61,7 +60,7 @@
 }
 
 .modal textarea:focus {
-  height: 100px;
+  height: 60px;
 }
 
 @media only screen and (max-width: 700px) {

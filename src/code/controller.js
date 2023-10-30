@@ -9,8 +9,10 @@ export const eliminarLibro = async (id)=>{
 
 export const nuevoLibro = async (titulo, autor, anio, publicador, contenido) => {
     biblioteca.validar(titulo, autor, anio, publicador, contenido)
-    const libro = new Libro(titulo, autor, anio, publicador, contenido, './src/assets/images/covers/default.png', './src/assets/images/thumbnails/default_t.png');
+    const libro = new Libro(titulo, autor, anio, publicador, contenido, '/covers/default.png', '/thumbnails/default_t.png');
     biblioteca.agregarLibro(libro);
+    console.log('Libro agregado:');
+    libro.imprimir()
     useEventEmitter().dispatchEvent('actualizar');
 }
 

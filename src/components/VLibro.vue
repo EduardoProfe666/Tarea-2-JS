@@ -3,11 +3,7 @@
     <div @click="emit('enviar_id', props.codigo)">
       <img class="caratula" :src="props.thumbnail" />
     </div>
-    <img
-      @click="emit_eliminar(props.codigo)"
-      class="boton-borrar"
-      src="./../assets/images/icons/delete_icon.png"
-    />
+    <img @click="emit_eliminar(props.codigo)" class="boton-borrar" src="/icons/delete_icon.png" />
   </div>
 </template>
 

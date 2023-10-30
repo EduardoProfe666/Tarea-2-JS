@@ -14,7 +14,7 @@ const mostrar_componente_modificar = ref(false)
 const mostrar_componente_eliminar = ref({ show: false, id: '' })
 const eliminar_carta = (id) => {
   mostrar_componente_eliminar.value.show = false
-  if (id === libro.value.getId()) libro.value = null
+  if (libro.value !== null && id === libro.value.getId()) libro.value = null
 }
 
 useEventEmitter().listen('eliminar_libro', (event) => {

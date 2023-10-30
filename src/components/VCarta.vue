@@ -6,7 +6,7 @@
     <label class="carta-subtitulo">publicado por {{ props.publicador }} en {{ props.anio }}</label>
     <p class="carta-contenido">{{ props.contenido }}</p>
     <div class="boton-modificar" @click="modificar_libro(props.codigo)">
-      <img src="./../assets/images/icons/edit_icon.png">
+      <img src="/icons/edit_icon.png">
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ const props = defineProps({
   contenido:String,
   cover: {
     type: String,
-    default: './src/assets/images/covers/default.png',
+    default: '/covers/default.png',
     required: true
   },
 })

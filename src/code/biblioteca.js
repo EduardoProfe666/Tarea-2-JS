@@ -52,6 +52,8 @@ class Biblioteca {
     if (validarNoNullUndefined(contenido)) libro.setContenido(contenido)
     if (validarNoNullUndefined(cover)) libro.setCover(cover)
     if (validarNoNullUndefined(thumbnail)) libro.setThumbnail(thumbnail)
+    console.log('Libro editado:')
+    this.buscarLibro(id_libro).imprimir()
   }
 
   /**
@@ -79,10 +81,14 @@ class Biblioteca {
   buscarLibros(titulo, autor, annoPublicacion, publicador) {
     let libros = this.getListadoLibros()
     if (validarNoNullUndefined(titulo)) {
-      libros = libros.filter((libro) => libro.getTitulo().includes(titulo))
+      libros = libros.filter((libro) =>
+        libro.getTitulo().toLowerCase().includes(titulo.toLowerCase())
+      )
     }
     if (validarNoNullUndefined(autor)) {
-      libros = libros.filter((libro) => libro.getAutor().includes(autor))
+      libros = libros.filter((libro) =>
+        libro.getAutor().toLowerCase().includes(autor.toLowerCase())
+      )
     }
     if (validarNoNullUndefined(annoPublicacion)) {
       libros = libros.filter((libro) =>
@@ -90,7 +96,9 @@ class Biblioteca {
       )
     }
     if (validarNoNullUndefined(publicador)) {
-      libros = libros.filter((libro) => libro.getPublicador().includes(publicador))
+      libros = libros.filter((libro) =>
+        libro.getPublicador().toLowerCase().includes(publicador.toLowerCase())
+      )
     }
 
     return libros
