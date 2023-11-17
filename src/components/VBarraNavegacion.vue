@@ -3,6 +3,9 @@
     <button @click="action()" class="boton-aniadir componente-cristal">
       Añadir Libro<img src="./../assets/images/icons/add_icon.png" />
     </button>
+    <button @click="create()" class="boton-crear componente-cristal">
+      Crear cuenta 
+    </button>
     <div class="contenedor-buscador">
       <form class="buscador" action="" @submit.prevent="enviarEvento">
       <input placeholder="titulo" class="barra-busqueda" v-model="titulo" />
@@ -29,8 +32,9 @@
 import { ref } from 'vue'
 import { useEventEmitter } from '../code/useEventEmitter.js'
 
-const emit = defineEmits(['aniadir_libro'])
+const emit = defineEmits(['aniadir_libro', 'crear_usuario'])
 const action = () => emit('aniadir_libro')
+const create = () => emit('crear_usuario')
 const titulo = ref('')
 const autor = ref('')
 const anno = ref('')
