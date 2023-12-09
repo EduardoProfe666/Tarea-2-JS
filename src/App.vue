@@ -7,11 +7,13 @@ import VAniadirLibro from './components/VAniadirLibro.vue'
 import VEliminarLibro from './components/VEliminarLibro.vue'
 import VModificarLibro from './components/VModificarLibro.vue'
 import VCrearUsuario from './components/VCrearUsuario.vue'
+import VLoginUsuario from './components/VLoginUsuario.vue'
 import { useEventEmitter } from './code/useEventEmitter'
 
 const libro = ref(null)
 const mostrar_componente_aniadir = ref(false)
 const mostrar_componente_crear_usu = ref(false)
+const mostrar_componente_login_usu = ref(false)
 const mostrar_componente_modificar = ref(false)
 const mostrar_componente_eliminar = ref({ show: false, id: '' })
 const eliminar_carta = (id) => {
@@ -29,6 +31,7 @@ useEventEmitter().listen('eliminar_libro', (event) => {
   <VBarraNavegacion
     v-on:aniadir_libro="() => (mostrar_componente_aniadir = true)"
     v-on:crear_usuario="() => (mostrar_componente_crear_usu = true)"
+    v-on:login_usuario="() => (mostrar_componente_login_usu = true)"
   ></VBarraNavegacion>
   <div class="main">
     <VEstanteria v-on:enviar_libro="(value) => (libro = value)"></VEstanteria>
@@ -54,6 +57,10 @@ useEventEmitter().listen('eliminar_libro', (event) => {
       v-on:cerrar="() => (mostrar_componente_crear_usu = false)"
       v-if="mostrar_componente_crear_usu === true">
     </v-crear-usuario>
+    <v-login-usuario     
+     v-on:cerrar="() => (mostrar_componente_login_usu = false)"
+      v-if="mostrar_componente_login_usu === true">
+    </v-login-usuario>
     <VEliminarLibro
       v-on:cancelar="() => (mostrar_componente_eliminar.show = false)"
       v-on:aceptar="(id) => eliminar_carta(id)"
